@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/KabakiAntony/Bucketlist.svg?branch=develop)](https://travis-ci.org/KabakiAntony/Bucketlist) [![Maintainability](https://api.codeclimate.com/v1/badges/3c867fd33448797e3d32/maintainability)](https://codeclimate.com/github/KabakiAntony/Bucketlist/maintainability) [![Coverage Status](https://coveralls.io/repos/github/KabakiAntony/Bucketlist/badge.svg?branch=develop)](https://coveralls.io/github/KabakiAntony/Bucketlist?branch=develop) [![codecov](https://codecov.io/gh/KabakiAntony/Bucketlist/branch/develop/graph/badge.svg)](https://codecov.io/gh/KabakiAntony/Bucketlist)
 
-## This app is just a continuation of learning flask and python language in general, in this project I will be doing a full crud api using the PostgreSQL Database so as to see how everything falls into place.
+## This app is just a continuation of learning flask and python language in general, in this project I will be doing a full crud api using the PostgreSQL Database so as to see how everything falls into place.Before everything else you have to clone this repo I believe that goes without saying.
 
 
 ## Setup and installation
@@ -36,7 +36,7 @@
 4. Running tests
 
    ```
-      python -m pytest --cov=app/api 
+      python -m pytest --cov=app/
 
       For those that may have a challenge running pytest as I noticed there is a bug getting pytest to 
       run on some windows machines then run the tests with  the below command. 
@@ -50,18 +50,21 @@
 5. Start the server
 
    ```
-      flask run or python run.py 
+      flask run or python wsgi.py 
    ```
  NOTE "flask run" defaults to production where the debug mode is off 
         and that denies one the chance of seeing the errors that arise
         but the below settings will help override that.
    ```
       use set on windows and export on linux/mac
-      set FLASK_APP=run.py
+      set FLASK_APP=wsgi.py
       set FLASK_DEBUG=1
       SET FLASK_ENV=development
        
    ``` 
+   It is also worth nothing that I have set the debug to True in code to have the code reload itself 
+   if it changes so therefore the above for this repo does not need to be set manually but if it is not 
+   you have the option of setting it in code or just doing the above steps everytime you run this application
 
 <details>
 <summary>BucketList endpoints</summary>
