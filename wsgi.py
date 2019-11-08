@@ -10,5 +10,5 @@ def root():
         <h3 style="text-align:center;">To access resources use the endpoint /lists</h3>'
 
 if __name__ == "__main__":
-    app.run(port=8080)
+    app.run()
 
