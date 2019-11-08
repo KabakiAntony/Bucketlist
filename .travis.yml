@@ -11,7 +11,7 @@ before_script:
   #- psql -c "CREATE DATABASE bucketlist_test_db;" -U postgres
   #- psql -c "CREATE USER kiarie WITH PASSWORD '7194';" -U postgres
 env:
-  #- SECRET_KEY="butterfly" DATABASE_TEST_URL="postgres://kiarie:7194@localhost/bucketlist_test_db"
+  #- SECRET_KEY="aX5bqx7djw3Hm1pAz2N8DQOzX3s" DATABASE_TEST_URL="postgres://kiarie:7194@localhost/bucketlist_test_db"
 script:
   - python -m pytest --cov=app/api
 after_success:
