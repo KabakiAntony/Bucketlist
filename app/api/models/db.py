@@ -42,9 +42,10 @@ def create_table():
     """
     try:
         kon, kursor = db_connection()
-        print("Database connection successful.")
+        print("\tDatabase connection successful.")
         kursor.execute(create_list_table)
         kon.commit()
+        kon.close()
     except (Exception,psycopg2.DatabaseError) as error:
         print(f"We could not create table due to -> {error}")
 
