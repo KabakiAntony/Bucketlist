@@ -29,11 +29,7 @@ class TestLists(unittest.TestCase):
         ,data=json.dumps(self.test_list), content_type='application/json')
         return response
     
-    def test_creating_validated_office(self):
+    def test_creating_validated_list(self):
         """Test creation of a list """
         response = self.post()
         self.assertEqual(response.status_code,201)
-        result = json.loads(response.data.decode('utf-8'))
-        self.assertEqual(result["Data"], self.specific_list)
-        self.assertEqual(result["Status"], 201)
-
