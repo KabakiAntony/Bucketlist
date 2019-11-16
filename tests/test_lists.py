@@ -10,7 +10,6 @@ class TestLists(unittest.TestCase):
         """Set up tests"""
         self.app = create_app('testing')
         self.client = self.app.test_client()
-        db_init()
         self.test_list = {"content": "test list"}
         self.specific_list = {"id":0,"content": "test list"}
         
@@ -33,3 +32,9 @@ class TestLists(unittest.TestCase):
         """Test creation of a list """
         response = self.post()
         self.assertEqual(response.status_code,201)
+
+    def test_getting_all_lists(self):
+        """Test getting all lists"""
+        #self.post()
+        response = self.client.get('/bucket/lists')
+        self.assertEqual(response.status_code,200)

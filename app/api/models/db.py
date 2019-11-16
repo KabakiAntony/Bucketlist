@@ -90,9 +90,6 @@ def handle_select_queries(query):
         rows = kursor.fetchall()
         konnection.close()
     return rows
-
-if __name__ == "__main__":
-    db_init()
         
 
 

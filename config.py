@@ -13,13 +13,15 @@ class Production(Config):
 
 class Development(Config):
     TESTING = True 
+    DATABASE_URI = os.environ.get('TEST_DATABASE_URL')
 
 class Testing(Config):
     DEBUG = True
-    DATABASE_URI = os.environ.get('PROD_DATABASE_URL')
+    DATABASE_URI = os.environ.get('TEST_DATABASE_URL')
 
 
 app_config = {
+    "production":Production,
     "development": Development,
     "testing": Testing
 }

@@ -14,3 +14,12 @@ def create_list():
         return make_response(jsonify({"content":content,"id":list_id}),201)       
     except psycopg2.DatabaseError as error:
         return make_response(jsonify({f'"Error":[{error}]'}),400)
+
+
+@bucket_list.route("/lists",methods=['GET'])
+def get_all_lists():
+    """Get all the lists in the database"""
+    return make_response(jsonify(Lists.get_all_list_items()),200)
+    
+
+
