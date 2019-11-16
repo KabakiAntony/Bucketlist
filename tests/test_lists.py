@@ -35,5 +35,6 @@ class TestLists(unittest.TestCase):
 
     def test_getting_all_lists(self):
         """Test getting all lists"""
+        #self.post()
         response = self.client.get('/bucket/lists')
         self.assertEqual(response.status_code,200)
