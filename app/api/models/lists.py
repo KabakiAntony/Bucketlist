@@ -14,4 +14,9 @@ class Lists:
         INSERT INTO list(content) VALUES ('{}') RETURNING id;
         """.format(self.content)
         return db.handle_other_queries(insert_new_list,True)
+
+    def get_all_list_items(self):
+        """Getting all list items"""
+        get_all_lists = """
+        
     

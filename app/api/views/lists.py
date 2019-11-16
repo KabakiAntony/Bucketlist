@@ -14,3 +14,6 @@ def create_list():
         return make_response(jsonify({"content":content,"id":list_id}),201)       
     except psycopg2.DatabaseError as error:
         return make_response(jsonify({f'"Error":[{error}]'}),400)
+    
+
+
