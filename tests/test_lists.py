@@ -38,3 +38,8 @@ class TestLists(unittest.TestCase):
         """Test getting all lists"""
         response = self.client.get('/bucket/lists')
         self.assertEqual(response.status_code,200)
+    
+    def test_getting_specific_list(self):
+        """Test getting specific list"""
+        response = self.client.get('/bucket/lists/{}'.format(0))
+        self.assertEqual(response.status_code,200)
