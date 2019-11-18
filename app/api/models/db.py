@@ -92,8 +92,3 @@ def handle_select_queries(query):
     return rows
         
 
-if __name__ == "__main__":
-    db_init()
-
-
-

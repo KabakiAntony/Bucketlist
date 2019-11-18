@@ -32,4 +32,11 @@ class Lists:
         get_all_lists = """
         SELECT id, content from list """
         return Lists.format_lists(db.handle_select_queries(get_all_lists))
+
+    def get_a_single_list(list_id):
+        """Getting all list items"""
+        get_a_single_list_item = """
+        SELECT id, content from list
+        WHERE list.id ={}""".format(list_id)
+        return Lists.format_lists(db.handle_select_queries(get_a_single_list_item))
     
