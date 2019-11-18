@@ -4,10 +4,12 @@
 
 ## Why bucketlist
 
-This app is just a continuation of learning flask and python language in general, in this project I will be doing a full crud api using the PostgreSQL Database so as to see how everything falls into place.
+This app is just a continuation of learning flask and python language in general, in this project 
+I will be doing a full crud api using the PostgreSQL Database so as to see how everything falls into place.
 
-The first and unsaid thing you have to do to use this repo is clone it locally to your development environment once that is done get into the directory
-and follow the steps as below to replicate the development environment and to get to project running
+The first and unsaid thing you have to do to use this repo is clone it locally to your development 
+environment once that is done get into the directory
+and follow the steps as below to get to project running
 
 
 ## Setup and installation
@@ -48,9 +50,9 @@ and follow the steps as below to replicate the development environment and to ge
 
       python -m nose2 -v 
 
-      The difference is that nose2 will not run coverage you will have to invoke coverage on your own, or if you decide to 
-      host the project on github and travis-ci in the background then it will run the coverage on your behalf and I do recommend
-      adding a travis-ci webhook to this project.
+      The difference is that nose2 will not run coverage you will have to invoke coverage on your own,
+      or if you decide to host the project on github and travis-ci in the background then it will run 
+      the coverage on your behalf and I do recommend adding a travis-ci webhook to this project.
 
    ```
 
@@ -63,8 +65,8 @@ and follow the steps as below to replicate the development environment and to ge
         and that denies one the chance of seeing the errors that arise
         but the below settings will help override that.
    ```
-      use set on windows and export on linux/mac you  can set this manually or you can put them in a .env file while will
-      load automatically thanks to flask latest support.
+      use set on windows and export on linux/mac you  can set this manually or you can put them in a 
+      .env file which will load automatically thanks to flask latest support.
       set FLASK_APP=wsgi.py
       set FLASK_DEBUG=1
       SET FLASK_ENV=development
