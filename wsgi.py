@@ -1,7 +1,7 @@
 from app import create_app
 from config import app_config
 
-the_configuration = "testing"
+the_configuration = "production"
 app = create_app(the_configuration)
 
 @app.route('/')

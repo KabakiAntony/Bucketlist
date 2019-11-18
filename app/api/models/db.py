@@ -57,7 +57,7 @@ def db_connection(query=None):
     DB_URL = app.config["DATABASE_URI"]
     try:
         konnection = psycopg2.connect(DB_URL)
-        #print("\n\nConnected to the database successfully\n")
+        # print("\n\nConnected to the database successfully\n")
         kursor = konnection.cursor(cursor_factory=psycopg2.extras.DictCursor)    
 
         if query:
