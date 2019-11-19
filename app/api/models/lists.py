@@ -39,4 +39,13 @@ class Lists:
         SELECT id, content from list
         WHERE list.id ={}""".format(list_id)
         return Lists.format_lists(db.handle_select_queries(get_a_single_list_item))
+
+    def update_a_list(list_id,update_content):
+        """Updating a list item"""
+        updating_list_item = """
+        UPDATE list SET  content ='{}' WHERE list.id ={}
+        """.format(update_content,list_id)
+        db.handle_other_queries(updating_list_item)
+        return Lists.get_a_single_list(list_id)
+
     

@@ -12,8 +12,8 @@ class TestLists(unittest.TestCase):
         db_init()
         self.client = self.app.test_client()
         self.test_list = {"content": "test list"}
-        self.specific_list = {"id":0,"content": "test list"}
-        self.updated_list = {"id":0,"content": "updated list"}
+        #self.specific_list = {"id":0,"content": "test list"}
+        self.updated_list = {"id":1,"content": "updating list"}
         
 
     def tearDown(self):
@@ -47,6 +47,6 @@ class TestLists(unittest.TestCase):
 
     def test_editing_a_list(self):
         """Testing editing a specific list"""
-        response = self.client.patch('bucket/lists/{}/content'.format(0),
+        response = self.client.patch('bucket/lists/{}/content'.format(1),
             data=json.dumps(self.updated_list),content_type='application/json')
-        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.status_code,201)

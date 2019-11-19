@@ -26,3 +26,12 @@ def get_a_single_list(list_id):
     """Get all the lists in the database"""
     return make_response(jsonify(Lists.get_a_single_list(list_id)),200)
 
+@bucket_list.route("/lists/<int:list_id>/content",methods=['PATCH'])
+def update_a_list(list_id):
+    """This updates a list information"""
+    try:
+        list_data = request.get_json()  
+        update_content = list_data["content"]
+        return make_response(jsonify(Lists.update_a_list(list_id,update_content)),201)       
+    except psycopg2.DatabaseError as error:
+        return make_response(jsonify({f'"Error":[{error}]'}),400)
