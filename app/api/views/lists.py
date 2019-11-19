@@ -32,6 +32,12 @@ def update_a_list(list_id):
     try:
         list_data = request.get_json()  
         update_content = list_data["content"]
-        return make_response(jsonify(Lists.update_a_list(list_id,update_content)),201)       
+        return make_response(jsonify(Lists.update_a_list(list_id,update_content)),200)       
     except psycopg2.DatabaseError as error:
         return make_response(jsonify({f'"Error":[{error}]'}),400)
+
+
+@bucket_list.route("/lists/<int:list_id>",methods=['DELETE'])
+def delete_a_list(list_id):
+    """This deletes a list by supplying it's id"""
+    return make_response(jsonify(Lists.delete_a_list(list_id)),200)
