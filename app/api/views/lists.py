@@ -25,3 +25,4 @@ def get_all_lists():
 def get_a_single_list(list_id):
     """Get all the lists in the database"""
     return make_response(jsonify(Lists.get_a_single_list(list_id)),200)
+
