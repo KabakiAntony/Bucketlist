@@ -10,8 +10,8 @@ def create_list():
         list_data = request.get_json()  
         content = list_data["content"]
         new_list = Lists(content=content)
-        list_id = new_list.create_list_item() 
-        return make_response(jsonify({"content":content,"id":list_id}),201)       
+        list_id = new_list.create_list_item()
+        return make_response(jsonify({"content":content,"id":list_id}),201)
     except psycopg2.DatabaseError as error:
         return make_response(jsonify({f'"Error":[{error}]'}),400)
 
@@ -30,8 +30,8 @@ def get_a_single_list(list_id):
 def update_a_list(list_id):
     """This updates a list information"""
     try:
-        list_data = request.get_json()  
+        list_data = request.get_json()
         update_content = list_data["content"]
-        return make_response(jsonify(Lists.update_a_list(list_id,update_content)),201)       
+        return make_response(jsonify(Lists.update_a_list(list_id,update_content)),201)
     except psycopg2.DatabaseError as error:
-        return make_response(jsonify({f'"Error":[{error}]'}),400)
+        return make_response(jsonify({"Error":[{}].format(error)}),400)

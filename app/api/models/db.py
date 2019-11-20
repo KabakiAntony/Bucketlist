@@ -1,4 +1,3 @@
-import os
 import sys
 import psycopg2
 import psycopg2.extras
@@ -25,7 +24,7 @@ def db_init():
         print("Database initialized successfully")
         konnection.close()
     except Exception as error:
-        print(f"We got an error of ->:' {error} ' while trying to initialize the database.")
+        print("We got an error of ->:{} @method db_init".format(error))
 
 def create_table():
     """
@@ -49,7 +48,7 @@ def drop_list_table():
 
 def db_connection(query=None):
     """
-    Try connecting to the database if successful 
+    Try connecting to the database if successful
     return the connection and the cursor object
     """
     konnection = None
@@ -57,15 +56,13 @@ def db_connection(query=None):
     DB_URL = app.config["DATABASE_URI"]
     try:
         konnection = psycopg2.connect(DB_URL)
-        # print("\n\nConnected to the database successfully\n")
         kursor = konnection.cursor(cursor_factory=psycopg2.extras.DictCursor)    
-
         if query:
             kursor.execute(query)
             konnection.commit()
 
     except (Exception,psycopg2.DatabaseError) as error:
-        print(f"We got an error of ->:' {error} ' trying to connect to the database.")
+        print("We got an error of ->:{}  @method db_connection".format(error))
     return konnection, kursor
 
 
@@ -79,7 +76,7 @@ def handle_other_queries(query,isquery=False):
             return get_last_insert
         konnection.close()
     except psycopg2.Error as error:
-        print(f"We got an error of ->:' {error} ' trying to handle other queries.")
+        print("We got an error of ->: {} @method handle_other_queries.".format(error))
         sys.exit(1)
 
 def handle_select_queries(query):
@@ -90,5 +87,3 @@ def handle_select_queries(query):
         rows = kursor.fetchall()
         konnection.close()
     return rows
-        
-

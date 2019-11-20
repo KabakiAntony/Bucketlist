@@ -46,6 +46,4 @@ class Lists:
         UPDATE list SET  content ='{}' WHERE list.id ={}
         """.format(update_content,list_id)
         db.handle_other_queries(updating_list_item)
-        return Lists.get_a_single_list(list_id)
-
-    
+        return Lists.get_a_single_list(list_id)    
