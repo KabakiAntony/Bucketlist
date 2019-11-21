@@ -60,8 +60,7 @@ environment once that is done get into the directory and follow the steps as bel
       | `DELETE` | `/lists/<int:list_id>`                | Delete a bucket list using it's id    |
 
 </details>
-<details open>
 
-      Incase of a bug or anything else use any on the below channels to reach me
-      
-      [Find me on twitter](https://twitter.com/kabakikiarie) OR  drop me an email at kabaki.antony@gmail.com
+Incase of a bug or anything else use any on the below channels to reach me
+
+[Find me on twitter](https://twitter.com/kabakikiarie) OR  drop me an email at kabaki.antony@gmail.com
