@@ -49,3 +49,9 @@ class TestLists(unittest.TestCase):
         response = self.client.patch('bucket/lists/{}/content'.format(1),
             data=json.dumps(self.updated_list),content_type='application/json')
         self.assertEqual(response.status_code,200)
+        
+    def test_deleting_a_list(self):
+        """Testing deleting a specific list"""
+        response = self.client.delete('bucket/lists/{}'.format(6),
+            data=json.dumps(self.updated_list),content_type='application/json')
+        self.assertEqual(response.status_code,200)

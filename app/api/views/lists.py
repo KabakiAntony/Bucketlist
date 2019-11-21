@@ -35,3 +35,8 @@ def update_a_list(list_id):
         return override_make_response("Data",Lists.update_a_list(list_id,update_content),200)
     except psycopg2.DatabaseError as error:
         return override_make_response("Error",{}.format(error),400)
+
+@bucket_list.route("/lists/<int:list_id>",methods=['DELETE'])
+def delete_a_list(list_id):
+    """This deletes a list by supplying it's id"""
+    return make_response(jsonify(Lists.delete_a_list(list_id)),200)
