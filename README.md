@@ -8,18 +8,15 @@ This app is just a continuation of learning flask and python language in general
 I will be doing a full crud api using the PostgreSQL Database so as to see how everything falls into place.
 
 The first and unsaid thing you have to do to use this repo is clone it locally to your development 
-environment once that is done get into the directory
-and follow the steps as below to get to project running
-
+environment once that is done get into the directory and follow the steps as below to get to project running
 
 ## Setup and installation
 
-   1. First things first set up virtualenv
+1. First things first set up virtualenv
 
       ```bash
          virtualenv venv
       ```
-
    2. Activate virtualenv on linux and windows  as below
 
       ```bash
@@ -32,14 +29,11 @@ and follow the steps as below to get to project running
          venv\Scripts\activate
          
       ```
-
    3. Install dependencies for the project 
 
       ```bash
          pip install -r requirements.txt
       ```
-
-
    4. Running tests
 
       ```bash
@@ -53,27 +47,12 @@ and follow the steps as below to get to project running
          The difference is that nose2 will not run coverage you will have to invoke coverage on your own,
          or if you decide to host the project on github and run travis-ci in the background then it will run 
          the coverage on your behalf and I do recommend adding a travis-ci webhook to this project.
-
       ```
-
    5. Start the server
 
       ```bash
          flask run or python wsgi.py 
       ```
-   NOTE "flask run" defaults to production where the debug mode is off 
-         and that denies one the chance of seeing the errors that arise
-         but the below settings will help override that.
-         use set on windows and export on linux/mac you  can set this manually or 
-         you can put them in a .env file which will load automatically thanks to 
-         flask latest support.
-         
-      ```bash      
-         set FLASK_APP=wsgi.py
-         set FLASK_DEBUG=1
-         SET FLASK_ENV=development
-      ``` 
-
       <details>
       <summary>BucketList endpoints</summary>
 
@@ -90,5 +69,5 @@ and follow the steps as below to get to project running
       <details open>
 
       Incase of a bug or anything else use any on the below channels to reach me
-
+      
       [Find me on twitter](https://twitter.com/kabakikiarie) OR  drop me an email at kabaki.antony@gmail.com
