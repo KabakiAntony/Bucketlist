@@ -14,64 +14,64 @@ and follow the steps as below to get to project running
 
 ## Setup and installation
 
-1. First things first set up virtualenv
+   1. First things first set up virtualenv
 
-   ```bash
-        virtualenv venv
-   ```
+      ```bash
+         virtualenv venv
+      ```
 
-2. Activate virtualenv on linux and windows  as below
+   2. Activate virtualenv on linux and windows  as below
 
-   ```bash
-      LINUX/MAC
+      ```bash
+         LINUX/MAC
 
-       source venv\bin\activate
+         source venv\bin\activate
 
-      WINDOWS
+         WINDOWS
 
-       venv\Scripts\activate
-      
-   ```
+         venv\Scripts\activate
+         
+      ```
 
-3. Install dependencies for the project 
+   3. Install dependencies for the project 
 
-   ```bash
-        pip install -r requirements.txt
-   ```
+      ```bash
+         pip install -r requirements.txt
+      ```
 
 
-4. Running tests
+   4. Running tests
 
-   ```
-      python -m pytest --cov=app/api
+      ```bash
+         python -m pytest --cov=app/api
 
-      For those that may have a challenge running pytest as I noticed there is a bug getting pytest to 
-      run on some windows machines then run the tests with  the below command. 
+         For those that may have a challenge running pytest as I noticed there is a bug getting pytest to 
+         run on some windows machines then run the tests with  the below command. 
 
-      python -m nose2 -v 
+         python -m nose2 -v 
 
-      The difference is that nose2 will not run coverage you will have to invoke coverage on your own,
-      or if you decide to host the project on github and travis-ci in the background then it will run 
-      the coverage on your behalf and I do recommend adding a travis-ci webhook to this project.
+         The difference is that nose2 will not run coverage you will have to invoke coverage on your own,
+         or if you decide to host the project on github and run travis-ci in the background then it will run 
+         the coverage on your behalf and I do recommend adding a travis-ci webhook to this project.
 
-   ```
+      ```
 
-5. Start the server
+   5. Start the server
 
-   ```
-      flask run or python wsgi.py 
-   ```
- NOTE "flask run" defaults to production where the debug mode is off 
-        and that denies one the chance of seeing the errors that arise
-        but the below settings will help override that.
-   ```
-      use set on windows and export on linux/mac you  can set this manually or you can put them in a 
-      .env file which will load automatically thanks to flask latest support.
-      set FLASK_APP=wsgi.py
-      set FLASK_DEBUG=1
-      SET FLASK_ENV=development
-       
-   ``` 
+      ```bash
+         flask run or python wsgi.py 
+      ```
+   NOTE "flask run" defaults to production where the debug mode is off 
+         and that denies one the chance of seeing the errors that arise
+         but the below settings will help override that.
+      ```bash
+         use set on windows and export on linux/mac you  can set this manually or you can put them in a 
+         .env file which will load automatically thanks to flask latest support.
+         set FLASK_APP=wsgi.py
+         set FLASK_DEBUG=1
+         SET FLASK_ENV=development
+         
+      ``` 
 
 <details>
 <summary>BucketList endpoints</summary>
@@ -91,6 +91,3 @@ and follow the steps as below to get to project running
 Incase of a bug or anything else use any on the below channels to reach me
 
 [Find me on twitter](https://twitter.com/kabakikiarie) OR  drop me an email at kabaki.antony@gmail.com
-
-
-
