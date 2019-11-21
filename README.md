@@ -13,12 +13,10 @@ environment once that is done get into the directory and follow the steps as bel
 ## Setup and installation
 
 1. First things first set up virtualenv
-
       ```bash
-         virtualenv venv
-      ```
-   2. Activate virtualenv on linux and windows  as below
-
+           virtualenv venv
+      ```      
+2. Activate virtualenv on linux and windows  as below
       ```bash
          LINUX/MAC
 
@@ -29,13 +27,11 @@ environment once that is done get into the directory and follow the steps as bel
          venv\Scripts\activate
          
       ```
-   3. Install dependencies for the project 
-
+3. Install dependencies for the project
       ```bash
          pip install -r requirements.txt
       ```
-   4. Running tests
-
+4. Running tests
       ```bash
          python -m pytest --cov=app/api
 
@@ -48,12 +44,11 @@ environment once that is done get into the directory and follow the steps as bel
          or if you decide to host the project on github and run travis-ci in the background then it will run 
          the coverage on your behalf and I do recommend adding a travis-ci webhook to this project.
       ```
-   5. Start the server
-
+5. Start the server
       ```bash
          flask run or python wsgi.py 
       ```
-      <details>
+<details>
       <summary>BucketList endpoints</summary>
 
       | Method   | Endpoint                              | Description                           |
@@ -64,10 +59,11 @@ environment once that is done get into the directory and follow the steps as bel
       | `PATCH`  | `/lists/<int:list_id>/content`        | modify/update the content of the list |
       | `DELETE` | `/lists/<int:list_id>`                | Delete a bucket list using it's id    |
 
-      </details>
-
-      <details open>
+</details>
+<details open>
 
       Incase of a bug or anything else use any on the below channels to reach me
       
       [Find me on twitter](https://twitter.com/kabakikiarie) OR  drop me an email at kabaki.antony@gmail.com
+
+      
