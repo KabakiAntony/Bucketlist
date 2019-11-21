@@ -1,9 +1,8 @@
 # all the tests for lists go here.
-import unittest 
+import unittest
 import json
 from app import create_app
 from app.api.models.db import db_init
-from app.api.models.lists import Lists
 
 class TestLists(unittest.TestCase):
     def setUp(self):
@@ -39,7 +38,7 @@ class TestLists(unittest.TestCase):
         """Test getting all lists"""
         response = self.client.get('/bucket/lists')
         self.assertEqual(response.status_code,200)
-    
+
     def test_getting_specific_list(self):
         """Test getting specific list"""
         response = self.client.get('/bucket/lists/{}'.format(0))
@@ -50,7 +49,7 @@ class TestLists(unittest.TestCase):
         response = self.client.patch('bucket/lists/{}/content'.format(1),
             data=json.dumps(self.updated_list),content_type='application/json')
         self.assertEqual(response.status_code,200)
-
+        
     def test_deleting_a_list(self):
         """Testing deleting a specific list"""
         response = self.client.delete('bucket/lists/{}'.format(6),
