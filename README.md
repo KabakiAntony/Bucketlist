@@ -70,7 +70,6 @@ and follow the steps as below to get to project running
          set FLASK_APP=wsgi.py
          set FLASK_DEBUG=1
          SET FLASK_ENV=development
-         
       ``` 
 
 <details>
