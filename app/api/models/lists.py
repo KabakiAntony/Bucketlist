@@ -45,13 +45,15 @@ class Lists:
         updating_list_item = """
         UPDATE list SET  content ='{}' WHERE list.id ={}
         """.format(update_content,list_id)
-        db.handle_other_queries(updating_list_item)
-        return Lists.get_a_single_list(list_id)    
+        if Lists.get_a_single_list(list_id):
+            db.handle_other_queries(updating_list_item)
+            return Lists.get_a_single_list(list_id)    
     
     def delete_a_list(list_id):
         """Updating a list item"""
         deleting_a_list_item = """
         DELETE FROM list  WHERE list.id ={}
         """.format(list_id)
-        db.handle_other_queries(deleting_a_list_item)
-        return "List id {} deleted successfully.".format(list_id)
+        if Lists.get_a_single_list(list_id):
+            db.handle_other_queries(deleting_a_list_item)
+            return "List id {} deleted successfully.".format(list_id)

@@ -1,7 +1,7 @@
 import psycopg2
+from flask import request
 from app.api import bucket_list
 from app.api.models.lists import Lists
-from flask import request,jsonify,make_response
 from app.api.utils import override_make_response,check_return
 
 @bucket_list.route("/lists",methods=['POST'])
@@ -19,12 +19,12 @@ def create_list():
 @bucket_list.route("/lists",methods=['GET'])
 def get_all_lists():
     """Get all the lists in the database"""
-    return override_make_response("Data",Lists.get_all_list_items(),200)
+    return check_return(Lists.get_all_list_items())
 
 @bucket_list.route("/lists/<int:list_id>",methods=['GET'])
 def get_a_single_list(list_id):
     """Get all the lists in the database"""
-    return override_make_response("Data",Lists.get_a_single_list(list_id),200)
+    return check_return(Lists.get_a_single_list(list_id))
 
 @bucket_list.route("/lists/<int:list_id>/content",methods=['PATCH'])
 def update_a_list(list_id):
@@ -32,11 +32,11 @@ def update_a_list(list_id):
     try:
         list_data = request.get_json()
         update_content = list_data["content"]
-        return override_make_response("Data",Lists.update_a_list(list_id,update_content),200)
+        return check_return(Lists.update_a_list(list_id,update_content))
     except psycopg2.DatabaseError as error:
         return override_make_response("Error",{}.format(error),400)
 
 @bucket_list.route("/lists/<int:list_id>",methods=['DELETE'])
 def delete_a_list(list_id):
     """This deletes a list by supplying it's id"""
-    return make_response(jsonify(Lists.delete_a_list(list_id)),200)
+    return check_return(Lists.delete_a_list(list_id))
