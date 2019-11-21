@@ -11,7 +11,6 @@ class TestLists(unittest.TestCase):
         db_init()
         self.client = self.app.test_client()
         self.test_list = {"content": "test list"}
-        #self.specific_list = {"id":0,"content": "test list"}
         self.updated_list = {"id":1,"content": "updating list"}
         
 
@@ -41,17 +40,17 @@ class TestLists(unittest.TestCase):
 
     def test_getting_specific_list(self):
         """Test getting specific list"""
-        response = self.client.get('/bucket/lists/{}'.format(0))
+        response = self.client.get('/bucket/lists/{}'.format(5))
         self.assertEqual(response.status_code,200)
 
     def test_editing_a_list(self):
         """Testing editing a specific list"""
-        response = self.client.patch('bucket/lists/{}/content'.format(1),
+        response = self.client.patch('bucket/lists/{}/content'.format(5),
             data=json.dumps(self.updated_list),content_type='application/json')
         self.assertEqual(response.status_code,200)
         
     def test_deleting_a_list(self):
         """Testing deleting a specific list"""
-        response = self.client.delete('bucket/lists/{}'.format(6),
+        response = self.client.delete('bucket/lists/{}'.format(1),
             data=json.dumps(self.updated_list),content_type='application/json')
-        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.status_code,404)
