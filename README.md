@@ -64,29 +64,31 @@ and follow the steps as below to get to project running
    NOTE "flask run" defaults to production where the debug mode is off 
          and that denies one the chance of seeing the errors that arise
          but the below settings will help override that.
-      ```bash
-         use set on windows and export on linux/mac you  can set this manually or you can put them in a 
-         .env file which will load automatically thanks to flask latest support.
+         use set on windows and export on linux/mac you  can set this manually or 
+         you can put them in a .env file which will load automatically thanks to 
+         flask latest support.
+         
+      ```bash      
          set FLASK_APP=wsgi.py
          set FLASK_DEBUG=1
          SET FLASK_ENV=development
       ``` 
 
-<details>
-<summary>BucketList endpoints</summary>
+      <details>
+      <summary>BucketList endpoints</summary>
 
-| Method   | Endpoint                              | Description                           |
-| -------- | ------------------------------------- | ------------------------------------- |
-| `GET`    | `/lists`                              | view all lists that you have created  |
-| `POST`   | `/lists`                              | create a new bucket list              |
-| `GET`    | `/lists/<int:list_id>`                | Get a specific bucket list by id      |
-| `PATCH`  | `/lists/<int:list_id>/content`        | modify/update the content of the list |
-| `DELETE` | `/lists/<int:list_id>`                | Delete a bucket list using it's id    |
+      | Method   | Endpoint                              | Description                           |
+      | -------- | ------------------------------------- | ------------------------------------- |
+      | `GET`    | `/lists`                              | view all lists that you have created  |
+      | `POST`   | `/lists`                              | create a new bucket list              |
+      | `GET`    | `/lists/<int:list_id>`                | Get a specific bucket list by id      |
+      | `PATCH`  | `/lists/<int:list_id>/content`        | modify/update the content of the list |
+      | `DELETE` | `/lists/<int:list_id>`                | Delete a bucket list using it's id    |
 
-</details>
+      </details>
 
-<details open>
+      <details open>
 
-Incase of a bug or anything else use any on the below channels to reach me
+      Incase of a bug or anything else use any on the below channels to reach me
 
-[Find me on twitter](https://twitter.com/kabakikiarie) OR  drop me an email at kabaki.antony@gmail.com
+      [Find me on twitter](https://twitter.com/kabakikiarie) OR  drop me an email at kabaki.antony@gmail.com
