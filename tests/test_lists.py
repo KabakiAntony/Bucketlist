@@ -48,4 +48,4 @@ class TestLists(unittest.TestCase):
         """Testing editing a specific list"""
         response = self.client.patch('bucket/lists/{}/content'.format(1),
             data=json.dumps(self.updated_list),content_type='application/json')
-        self.assertEqual(response.status_code,201)
+        self.assertEqual(response.status_code,200)
