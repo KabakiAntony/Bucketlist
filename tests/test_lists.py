@@ -7,9 +7,10 @@ from app.api.models.db import db_init
 class TestLists(unittest.TestCase):
     def setUp(self):
         """Set up tests"""
-        self.app = create_app('testing')
-        db_init()
+        
+        self.app = create_app("testing")
         self.client = self.app.test_client()
+        db_init()   
         self.test_list = {"content": "test list"}
         self.updated_list = {"id":1,"content": "updating list"}
         
@@ -35,22 +36,26 @@ class TestLists(unittest.TestCase):
 
     def test_getting_all_lists(self):
         """Test getting all lists"""
+        self.post()
         response = self.client.get('/bucket/lists')
         self.assertEqual(response.status_code,200)
 
     def test_getting_specific_list(self):
         """Test getting specific list"""
-        response = self.client.get('/bucket/lists/{}'.format(5))
+        self.post()
+        response = self.client.get('/bucket/lists/{}'.format(1))
         self.assertEqual(response.status_code,200)
 
     def test_editing_a_list(self):
         """Testing editing a specific list"""
-        response = self.client.patch('bucket/lists/{}/content'.format(5),
+        self.post()
+        response = self.client.patch('bucket/lists/{}/content'.format(1),
             data=json.dumps(self.updated_list),content_type='application/json')
         self.assertEqual(response.status_code,200)
         
     def test_deleting_a_list(self):
         """Testing deleting a specific list"""
+        self.post()
         response = self.client.delete('bucket/lists/{}'.format(1),
             data=json.dumps(self.updated_list),content_type='application/json')
-        self.assertEqual(response.status_code,404)
+        self.assertEqual(response.status_code,200)

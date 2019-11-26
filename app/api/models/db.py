@@ -13,15 +13,16 @@ def db_init():
         db_init_queries =[]
         if app.config['TESTING']:
             db_init_queries = drop_list_table() + create_table()
+            print("*** Tables dropped & created successfully ...")
         else:
             db_init_queries = create_table()
+            print("*** Tables created successfully ....")
         i = 0
         while i != len(db_init_queries):
             query = db_init_queries[i]
             kursor.execute(query)
             konnection.commit()
             i += 1
-        print("Database initialized successfully")
         konnection.close()
     except Exception as error:
         print("We got an error of ->:{} @method db_init".format(error))
