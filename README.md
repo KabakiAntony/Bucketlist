@@ -7,8 +7,8 @@
 This app is just a continuation of learning flask and python language in general, in this project 
 I will be doing a full crud api using the PostgreSQL Database so as to see how everything falls into place.
 
-The first and unsaid thing you have to do to use this repo is clone it locally to your development 
-environment once that is done get into the directory and follow the steps as below to get to project running
+**The first thing you have to do to use this repo is clone it locally to your development environment 
+once that is done get into the directory and follow the steps as below to get to project running**
 
 ## Setup and installation
 
