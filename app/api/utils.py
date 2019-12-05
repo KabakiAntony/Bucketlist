@@ -1,4 +1,5 @@
-from flask import jsonify,request,make_response
+from flask import jsonify,request,make_response,abort
+import re
 
 def override_make_response(key,message,status):
     """This method overrides make_response making custom responses from
@@ -23,4 +24,28 @@ def check_return(returned):
         status = 200
         response = override_make_response("Data",message,status) 
     return response
- 
+
+def is_email_valid(email):
+    """This function checks whether an email is valid"""
+    if not re.match(r"^[A-Za-z0-9\.\+_-]+@[A-Za-z0-9\._-]+\.[a-zA-Z]*$", email):
+        abort(override_make_response("Data","email is invalid",400))
+    return True
+
+
+def is_valid_password(password):
+    """Check if the user supplied a password that meets
+    expectations"""
+    # check the length of the password
+    if len(password) < 5 or len(password) > 20:
+        abort(
+            override_make_response
+            ("Error","Password should not be less than 8 characters or exceed 20",400))
+
+    lowercase_reg = re.search("[a-z]", password)
+    uppercase_reg = re.search("[A-Z]", password)
+    number_reg = re.search("[0-9]", password)
+    if not lowercase_reg or not uppercase_reg or not number_reg:
+        abort(override_make_response
+        ("Error","Password should contain at least 1 number, 1 small letter & 1 Capital letter",400))
+
+

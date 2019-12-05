@@ -11,8 +11,8 @@ class TestLists(unittest.TestCase):
         self.app = create_app("testing")
         self.client = self.app.test_client()
         db_init()   
-        self.test_list = {"content": "test list"}
-        self.updated_list = {"id":1,"content": "updating list"}
+        self.test_list = {"content": "test list","user_id":1}
+        self.updated_list = {"post_id":1,"content": "updating list","user_id":1}
         
 
     def tearDown(self):

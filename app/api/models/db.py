@@ -12,10 +12,10 @@ def db_init():
         konnection, kursor = db_connection()
         db_init_queries =[]
         if app.config['TESTING']:
-            db_init_queries = drop_list_table() + create_table()
+            db_init_queries = drop_tables() + create_tables()
             print("*** Tables dropped & created successfully ...")
         else:
-            db_init_queries = create_table()
+            db_init_queries = create_tables()
             print("*** Tables created successfully ....")
         i = 0
         while i != len(db_init_queries):
@@ -27,24 +27,38 @@ def db_init():
     except Exception as error:
         print("We got an error of ->:{} @method db_init".format(error))
 
-def create_table():
+def create_tables():
     """
-    Create the list table that will hold
+    Create the tables that will hold
     all the data for this simple app
     """
-    create_list_table ="""
-    CREATE TABLE IF NOT EXISTS list
+    create_users_table ="""
+    CREATE TABLE IF NOT EXISTS users
     (
-        id SERIAL PRIMARY KEY,
-        content varchar(255) not null
+        user_id SERIAL PRIMARY KEY,
+        firstname varchar(25) NOT NULL,
+        email VARCHAR (30) NOT NULL UNIQUE,
+        password VARCHAR (128) NOT NULL
     )"""
-    return [create_list_table]
 
-def drop_list_table():
-    """Drop list table everytime the app restarts"""
-    drop_table ="""
-    DROP TABLE IF EXISTS list CASCADE"""
-    return [drop_table]
+    create_posts_table ="""
+    CREATE TABLE IF NOT EXISTS posts
+    (
+        post_id SERIAL PRIMARY KEY,
+        content varchar(255) NOT NULL,
+        user_id INTEGER,
+        FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+    )"""
+    return [create_users_table,create_posts_table]
+
+
+def drop_tables():
+    """Drop tables everytime the app restarts"""
+    drop_users_table ="""
+    DROP TABLE IF EXISTS users CASCADE"""
+    drop_posts_table ="""
+    DROP TABLE IF EXISTS posts CASCADE"""
+    return [drop_users_table,drop_posts_table]
 
 
 def db_connection(query=None):
