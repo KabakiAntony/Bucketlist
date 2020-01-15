@@ -55,7 +55,7 @@ class Lists:
     def delete_a_post(post_id):
         """Updating a list item"""
         deleting_a_post_item = """
-        DELETE FROM posts  WHERE list.id ={}
+        DELETE FROM posts  WHERE posts.post_id ={}
         """.format(post_id)
         if Lists.get_a_single_post(post_id):
             db.handle_other_queries(deleting_a_post_item)
