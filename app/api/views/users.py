@@ -1,17 +1,18 @@
 # this will return and format calls to the user database 
 # make it better for view  to user
 
-import os
-import jwt
-import json
-import requests
-import psycopg2
+
 from flask import request,abort
 from app.api import bucket_list
 from app.api.models.users import User
+import psycopg2
 from app.api.utils import override_make_response,\
     check_return,is_email_valid,is_valid_password,\
     check_for_details_whitespace
+import requests
+import json
+import os
+import jwt
 
 KEY = os.getenv('SECRET_KEY')
 
@@ -53,6 +54,8 @@ def user_login():
         abort(override_make_response(
             "Error","Keys should be 'email','password'",400))
 
+    # check if any field is empty
+    check_for_details_whitespace(data,["email","password"])
     # then check if email is valid
     is_email_valid(email)
 
@@ -68,13 +71,12 @@ def user_login():
         email = user[0][2]
         returned_password = user[0][3]
         password_check = User.compare_password(returned_password,entered_password)
-
         if not password_check:
             abort(override_make_response("Error","The password is wrong, please try again",400))
 
-        token = jwt.encode({"email":email},KEY)
+        token = jwt.encode({"email" :email},KEY)
         return override_make_response("Data",
-        [{"message": "Logged in successfully","token": token.decode('UTF-8'),\
+        [{"message": "Logged in successfully","token": token.decode('utf-8'),\
             "user": {"user_id": user_id,"email": email}}],200)
     except psycopg2.DatabaseError as _error:
         abort(override_make_response("Error", "Server error",500))
