@@ -40,9 +40,9 @@ class TestLists(unittest.TestCase):
     def test_successful_user_login(self):
         """Test user login """
         self.post()
-        response = self.client.post('/bucket/signin'
+        response = self.client.post("/bucket/signin"
         ,data=json.dumps({"email":"kabak.kiarie@gmail.com",
-        "password":"Baniut490t4"}), content_type='application/json')
+        "password":"Baniut490t4"}), content_type="application/json")
         self.assertEqual(response.status_code, 200)
     
     def test_user_creating_account_with_blank_field(self):
