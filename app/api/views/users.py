@@ -14,7 +14,8 @@ import json
 import os
 import jwt
 
-KEY = os.getenv('SECRET_KEY')
+#KEY = os.getenv('SECRET_KEY')
+KEY="aX5bqx7djw3Hm1pAz2N8DQOzX3s"
 
 
 @bucket_list.route("/signup",methods=['POST'])
