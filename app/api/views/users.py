@@ -52,7 +52,7 @@ def user_login():
         entered_password = data["password"]
     except KeyError:
         abort(override_make_response(
-            "Error","Keys should be 'email','password'",400))
+            "Error","Keys should be email,password",400))
 
     # check if any field is empty
     check_for_details_whitespace(data,["email","password"])
@@ -74,10 +74,11 @@ def user_login():
         if not password_check:
             abort(override_make_response("Error","The password is wrong, please try again",400))
 
-        token = jwt.encode({"email" :email},KEY)
+        token = jwt.encode({"email" :email},KEY,algorithm="HS256")
         return override_make_response("Data",
-        [{"message": "Logged in successfully","token": token.decode('utf-8'),\
-            "user": {"user_id": user_id,"email": email}}],200)
+        [{"message": "Logged in successfully",
+        "token": token.decode("UTF-8"),
+        "user": {"user_id": user_id,"email": email}}],200)
     except psycopg2.DatabaseError as _error:
         abort(override_make_response("Error", "Server error",500))
         
