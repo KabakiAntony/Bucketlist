@@ -10,7 +10,8 @@ from flask import request,abort
 from app.api import bucket_list
 from app.api.models.users import User
 from app.api.utils import override_make_response,\
-    check_return,is_email_valid,is_valid_password
+    check_return,is_email_valid,is_valid_password,\
+    check_for_details_whitespace
 
 KEY = os.getenv('SECRET_KEY')
 
@@ -25,6 +26,9 @@ def user_signup():
     except:
         abort(override_make_response("Error",
         "Keys should be 'firstname','email','password'",400))
+    
+    # check if any field is empty
+    check_for_details_whitespace(data,["firstname","email","password"])
     # first check if email is valid
     is_email_valid(email)
     # is the email already in use or not

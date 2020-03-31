@@ -13,6 +13,8 @@ class TestLists(unittest.TestCase):
         db_init()
         self.test_user = {"firstname":"kabaki",\
             "email":"kabak.kiarie@gmail.com","password":"Baniut490t4"}
+        self.test_blank_username = {"firstname":"",\
+            "email":"akabak.kiarie@gmail.com","password":"Baniut490t4"}
 
     # there will be no teardown in this test module 
     # since I want the database to clear after all tests
@@ -32,5 +34,20 @@ class TestLists(unittest.TestCase):
         """Test the creation of an account"""
         response = self.post()
         self.assertEqual(response.status_code,201)
+    
+    def test_successful_user_login(self):
+        """Test user login"""
+        self.post()
+        response = self.client.post('/bucket/signin'
+        ,data=json.dumps(self.test_user), content_type='application/json')
+        self.assertEqual(response.status_code, 200)
+    
+    def test_user_creating_account_with_blank_field(self):
+        """Test creating a user with a blank field"""
+        self.post()
+        response = self.client.post("/bucket/signup"
+        ,data=json.dumps(self.test_blank_username),content_type="application/json")
+        self.assertEqual(response.status_code, 400)
+        
     
     

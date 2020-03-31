@@ -48,4 +48,12 @@ def is_valid_password(password):
         abort(override_make_response
         ("Error","Password should contain at least 1 number, 1 small letter & 1 Capital letter",400))
 
+def check_for_details_whitespace(data, items_to_check):
+    """Check whether any of the user details is blank"""
+    for key, value in data.items():
+        if key in items_to_check and not value.strip():
+            abort(override_make_response
+            ("Error","{} field cannot be left blank".format(key),400))
+
+    return True
 
