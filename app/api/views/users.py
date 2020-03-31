@@ -16,6 +16,7 @@ import jwt
 
 KEY = os.getenv('SECRET_KEY')
 
+
 @bucket_list.route("/signup",methods=['POST'])
 def user_signup():
     """Signs a  new user up"""
@@ -74,10 +75,10 @@ def user_login():
         if not password_check:
             abort(override_make_response("Error","The password is wrong, please try again",400))
 
-        #token = jwt.encode({"email" :email},KEY,algorithm="HS256")
+        token = jwt.encode({"email" :email},KEY,algorithm="HS256")
         return override_make_response("Data",
         [{"message": "Logged in successfully",
-        #"token": token.decode("UTF-8"),
+        "token": token.decode("UTF-8"),
         "user": {"user_id": user_id,"email": email}}],200)
     except psycopg2.DatabaseError as _error:
         abort(override_make_response("Error", "Server error",500))
