@@ -66,7 +66,7 @@ class User:
     def get_all_users():
         """Getting all users in database"""
         get_all_users ="""
-        SELECT user_id,firstname,email from users"""
+        SELECT * from users"""
         returned = db.handle_select_queries(get_all_users)
         return User.fromat_users_to_list(returned)
     

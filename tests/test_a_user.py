@@ -54,6 +54,12 @@ class TestLists(unittest.TestCase):
         response = self.client.post("/bucket/signup"
         ,data=json.dumps(self.test_blank_username),content_type="application/json")
         self.assertEqual(response.status_code, 400)
+
+    def test_getting_all_users(self):
+        """Test getting all users"""
+        self.post()
+        response = self.client.get('bucket/users')
+        self.assertEqual(response.status_code, 200)
         
     
     

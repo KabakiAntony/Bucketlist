@@ -82,6 +82,11 @@ def user_login():
         "user": {"user_id": user_id,"email": email}}],200)
     except psycopg2.DatabaseError as _error:
         abort(override_make_response("Error", "Server error",500))
+    
+@bucket_list.route("/users",methods=['GET'])
+def get_all_users():
+    """List all system users"""
+    return override_make_response("Data",User.get_all_users(),200)
         
 
 
