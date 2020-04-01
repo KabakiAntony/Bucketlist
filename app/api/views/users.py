@@ -38,7 +38,7 @@ def user_signup():
     # is the email already in use or not
     if User.get_user_by_email(email):
         abort(override_make_response
-        ("Error","The email is already in use choose another one",400))
+        ("Error","The email is already in use choose another one",409))
     # check if password meets expectations
     is_valid_password(password)
     new_user = User(firstname = firstname,email = email,password = password)
