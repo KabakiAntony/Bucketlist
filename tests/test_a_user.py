@@ -66,3 +66,13 @@ class TestLists(unittest.TestCase):
         self.post()
         response = self.client.get('/bucket/users/{}'.format(1))
         self.assertEqual(response.status_code,200)
+
+    def test_signin_with_wrong_password(self):
+        """Test sign in with a wrong password"""
+        self.post()
+        response = self.client.post(
+            "/bucket/signin", data=json.dumps({
+                "email": "kabak.kiarie@gmail.com",
+                "password": "Baniut490t5"
+            }),content_type="application/json")
+        self.assertEqual(response.status_code, 400)
