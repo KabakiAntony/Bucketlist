@@ -1,7 +1,8 @@
 # this will return and format calls to the user database 
 # make it better for view  to user
 
-
+import os
+import jwt
 from flask import request,abort
 from app.api import bucket_list
 from app.api.models.users import User
@@ -9,11 +10,12 @@ import psycopg2
 from app.api.utils import override_make_response,\
     check_return,is_email_valid,is_valid_password,\
     check_for_details_whitespace
-import requests
-import json
-import os
-import jwt
 
+
+
+# the reason I have setup a secret key backup is a work around
+# prevent flask from throwing an error of NONETYPE when parsing
+# KEY in jwt.encode 
 KEY = os.getenv('SECRET_KEY',"aX5bqx7djw3Hm1pAz2N8DQOzX3s")
 
 
@@ -86,7 +88,14 @@ def user_login():
 @bucket_list.route("/users",methods=['GET'])
 def get_all_users():
     """List all system users"""
-    return override_make_response("Data",User.get_all_users(),200)
+    #return override_make_response("Data",User.get_all_users(),200)
+    return check_return(User.get_all_users())
+
+
+@bucket_list.route("/users/<int:user_id>",methods=['GET'])
+def  get_specific_user(user_id):
+    """Get a specific user"""
+    return check_return(User.get_user_by_id(user_id))
         
 
 

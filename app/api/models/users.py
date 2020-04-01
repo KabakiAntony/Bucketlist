@@ -34,7 +34,7 @@ class User:
         returns true or false"""
         return check_password_hash(hashed_password,str(password))
 
-    def fromat_users_to_list(iterable):
+    def format_users_to_list(iterable):
         """This takes the users returned from
         get all users and returns a list
         """
@@ -61,14 +61,22 @@ class User:
         SELECT user_id,firstname,email from users
         where users.user_id ='{}'""".format(user_id)
         returned = db.handle_select_queries(get_user_by_id)
-        return User.fromat_users_to_list(returned)
+        return User.format_users_to_list(returned)
     
     def get_all_users():
         """Getting all users in database"""
-        get_all_users ="""
-        SELECT * from users"""
-        returned = db.handle_select_queries(get_all_users)
-        return User.fromat_users_to_list(returned)
+        get_all_user ="""
+        SELECT user_id,firstname,email from users"""
+        returned = db.handle_select_queries(get_all_user)
+        return User.format_users_to_list(returned)
+
+    def update_password(email, new_password):
+        """This will update the password for the user
+        when one chooses to"""
+        update_user_password = """
+        UPDATE users SET password = '{}' WHERE users.email = '{}'
+        """.format(generate_password_hash(str(new_password)), email)
+        db.handle_other_queries(update_user_password)
     
 
     

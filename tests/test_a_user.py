@@ -60,6 +60,9 @@ class TestLists(unittest.TestCase):
         self.post()
         response = self.client.get('bucket/users')
         self.assertEqual(response.status_code, 200)
-        
-    
-    
+
+    def test_getting_user_by_id(self):
+        """Test getting a user by id"""
+        self.post()
+        response = self.client.get('/bucket/users/{}'.format(1))
+        self.assertEqual(response.status_code,200)
