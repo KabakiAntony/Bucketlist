@@ -7,7 +7,7 @@ class Config(object):
     DEBUG = False
     TESTING = False
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    DATABASE_URI = os.environ.get('PROD_DATABASE_URL')
+    DATABASE_URI = os.environ.get('DATABASE_URL')
 
 class Production(Config):
     pass
