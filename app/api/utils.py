@@ -39,7 +39,7 @@ def is_valid_password(password):
     if len(password) < 6 or len(password) > 20:
         abort(
             override_make_response
-            ("Error","Password should not be less than 6 characters or exceed 20",400))
+            ("Error","Password should be atleast 6 characters & not exceed 20",400))
 
     lowercase_reg = re.search("[a-z]", password)
     uppercase_reg = re.search("[A-Z]", password)
