@@ -45,8 +45,7 @@ class TestLists(unittest.TestCase):
                 "email": "kabak.kiarie@gmail.com",
                 "password": "Baniut490t4"
             }),content_type="application/json")
-        self.assertEqual(response.status_code, 200)
-        
+        self.assertEqual(response.status_code, 200)     
     
     def test_user_creating_account_with_blank_field(self):
         """Test creating a user with a blank field"""
@@ -81,4 +80,93 @@ class TestLists(unittest.TestCase):
         """Test signing up an already existing email"""
         self.post()
         response = self.post()
-        self.assertEqual(response.status_code, 409)
+        self.assertEqual(response.status_code, 409)       
+
+    def test_signup_with_missing_info(self):
+        """Test sign up with some user info missing."""
+        response = self.client.post('/bucket/signup'
+        ,data=json.dumps({"firstname":"kaba"})
+        ,content_type='application/json')
+        self.assertEqual(response.status_code, 400)
+
+    def test_signup_with_missing_password(self):
+        """Test sign up with missing password"""
+        response = self.client.post('/bucket/signup'
+        ,data=json.dumps({"firstname":"kaba",
+        "email":"kaba@gmail.com"})
+        ,content_type='application/json')
+        self.assertEqual(response.status_code, 400)
+    
+    def test_signin_with_a_non_existent_account(self):
+        """Test sign in with a non exisistent account"""
+        self.post()
+        response = self.client.post(
+            "/bucket/signin", data=json.dumps({
+                "email": "jkabak.kiarie@gmail.com",
+                "password": "Baniut490t5"
+            }),content_type="application/json")
+        self.assertEqual(response.status_code, 404)
+
+    def test_signup_password_without_a_number(self):
+        """Test sign up with a password without a number"""
+        response = self.client.post('/bucket/signup',
+        data=json.dumps({"firstname":"kaba",
+        "email":"kaba@gmail.com",
+        "password":"Baniutxxca"}),content_type='application/json')
+        self.assertEqual(response.status_code, 400)
+    
+    def test_signup_password_without_caps(self):
+        """Test sign up with a password without caps"""
+        response = self.client.post('/bucket/signup',
+        data=json.dumps({"firstname":"kaba",
+        "email":"kaba@gmail.com",
+        "password":"aniutxxc23a"}),content_type='application/json')
+        self.assertEqual(response.status_code, 400)
+    
+    def test_signup_password_too_short(self):
+        """Test sign up with a short password"""
+        response = self.client.post('/bucket/signup',
+        data=json.dumps({"firstname":"kaba",
+        "email":"kaba@gmail.com",
+        "password":"Ba5ge"}),content_type='application/json')
+        self.assertEqual(response.status_code, 400)
+    
+    def test_signup_password_all_caps(self):
+        """Test sign up with a password all caps"""
+        response = self.client.post('/bucket/signup',
+        data=json.dumps({"firstname":"kabaf",
+        "email":"mkaba@gmail.com",
+        "password":"NADKJROR23"}),content_type='application/json')
+        self.assertEqual(response.status_code, 400)
+    
+    def test_update_user_password(self):
+        """Test updating an existing user password"""
+        self.post()
+        response = self.client.post('/bucket/auth/newpass',
+        data=json.dumps({"email":"kabak.kiarie@gmail.com",
+        "password":"Baniut490t6"}),content_type='application/json')
+        self.assertEqual(response.status_code, 200)
+    
+    def test_update_non_user_password(self):
+        """Test updating an non existing user password"""
+        self.post()
+        response = self.client.post('/bucket/auth/newpass',
+        data=json.dumps({"email":"gkabak.kiarie@gmail.com",
+        "password":"Baniut490t6"}),content_type='application/json')
+        self.assertEqual(response.status_code, 404)
+    
+    def test_update_a_password_missing_password(self):
+        """Test updating a password with missing password"""
+        self.post()
+        response = self.client.post('/bucket/auth/newpass',
+        data=json.dumps({"email":"kabak.kiarie@gmail.com",
+        "password":""}),content_type='application/json')
+        self.assertEqual(response.status_code, 400)
+
+        
+    
+
+
+
+        
+

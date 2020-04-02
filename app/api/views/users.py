@@ -96,6 +96,36 @@ def get_all_users():
 def  get_specific_user(user_id):
     """Get a specific user"""
     return check_return(User.get_user_by_id(user_id))
+
+@bucket_list.route("/auth/newpass",methods=['POST'])
+def update_password():
+    """Update user password"""
+    try:
+        data = request.get_json()
+        email = data['email']
+        password = data['password']
+
+    except KeyError:
+        abort(override_make_response
+        ("Error", "Should be email & password",400))
+    
+    # check if any field is empty
+    check_for_details_whitespace(data,["email","password"])
+    # then check if email is valid
+    is_email_valid(email)
+    # then check if password is valid
+    is_valid_password(password)
+    # then check if user exists
+    user = User.get_user_by_email(email)
+    if not user:
+        abort(override_make_response
+        ("Not Found", "User is not registered.",404))
+    # if all is ok update user password.
+    User.update_password(email,password)
+
+    return override_make_response("Data",
+    "Password changed successfully, Login with new password",200)
+
         
 
 
