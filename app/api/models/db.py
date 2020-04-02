@@ -98,7 +98,10 @@ def handle_select_queries(query):
     """Handle select queries"""
     rows = None
     konnection, kursor = db_connection(query)
-    if konnection:
-        rows = kursor.fetchall()
-        konnection.close()
-    return rows
+    try:
+        if konnection:
+            rows = kursor.fetchall()
+            konnection.close()
+        return rows
+    except psycopg2.Error as error:
+        print("We got an error of ->: {} @method handle_select_queries.".format(error))
