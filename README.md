@@ -66,6 +66,6 @@ once that is done get into the directory and follow the steps as below to get to
 
 </details>
 
-Incase of a bug or anything else use any on the below channels to reach me
+Incase of a bug or anything else use any on the below channels to reach me on
 
 [Find me on twitter](https://twitter.com/kabakikiarie) OR  drop me an email at kabaki.antony@gmail.com
