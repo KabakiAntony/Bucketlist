@@ -1,6 +1,6 @@
 # BucketList App
 
-[![Build Status](https://travis-ci.org/KabakiAntony/Bucketlist.svg?branch=develop)](https://travis-ci.org/KabakiAntony/Bucketlist) [![Maintainability](https://api.codeclimate.com/v1/badges/3c867fd33448797e3d32/maintainability)](https://codeclimate.com/github/KabakiAntony/Bucketlist/maintainability)[![Coverage Status](https://coveralls.io/repos/github/KabakiAntony/Bucketlist/badge.svg?branch=develop)](https://coveralls.io/github/KabakiAntony/Bucketlist?branch=develop) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a5debaed7b4141e2bdd9f0b7ee25f7c5)](https://www.codacy.com/manual/KabakiAntony/Bucketlist?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=KabakiAntony/Bucketlist&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/KabakiAntony/Bucketlist.svg?branch=develop)](https://travis-ci.org/KabakiAntony/Bucketlist) [![Maintainability](https://api.codeclimate.com/v1/badges/3c867fd33448797e3d32/maintainability)](https://codeclimate.com/github/KabakiAntony/Bucketlist/maintainability) [![Coverage Status](https://coveralls.io/repos/github/KabakiAntony/Bucketlist/badge.svg?branch=develop)](https://coveralls.io/github/KabakiAntony/Bucketlist?branch=develop) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a5debaed7b4141e2bdd9f0b7ee25f7c5)](https://www.codacy.com/manual/KabakiAntony/Bucketlist?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=KabakiAntony/Bucketlist&amp;utm_campaign=Badge_Grade)
 
 ## Why bucketlist
 
