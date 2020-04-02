@@ -58,6 +58,11 @@ once that is done get into the directory and follow the steps as below to get to
       | `GET`    | `/lists/<int:list_id>`                | Get a specific bucket list by id      |
       | `PATCH`  | `/lists/<int:list_id>/content`        | modify/update the content of the list |
       | `DELETE` | `/lists/<int:list_id>`                | Delete a bucket list using it's id    |
+      | `GET`    | `/users`                              | admin to see all users of the system  |
+      | `POST`   | `/auth/signup                         | create a new user account             |
+      | `GET`    | `/users/<int:list_id>`                | Get a specific user by id             |
+      | `POST`   | `/auth/sigin`                         | user to sign into the system          |
+      | `POST`   | `/auth/newpass                        | user to update change their password  |
 
 </details>
 
