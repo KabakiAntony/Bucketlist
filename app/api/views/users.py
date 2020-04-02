@@ -19,7 +19,7 @@ from app.api.utils import override_make_response,\
 KEY = os.getenv('SECRET_KEY',"aX5bqx7djw3Hm1pAz2N8DQOzX3s")
 
 
-@bucket_list.route("/signup",methods=['POST'])
+@bucket_list.route("/auth/signup",methods=['POST'])
 def user_signup():
     """Signs a  new user up"""
     try:
@@ -46,7 +46,7 @@ def user_signup():
     return override_make_response(
         "Data",[{"firstname":firstname,"email":email,"user_id":user_id}],201)
 
-@bucket_list.route("/signin",methods=['POST'])
+@bucket_list.route("/auth/signin",methods=['POST'])
 def user_login():
     """Authorize the user to access the system"""
     try:
