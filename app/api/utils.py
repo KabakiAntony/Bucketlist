@@ -74,7 +74,7 @@ def token_required(f):
         if not token:
             return override_make_response("Error","Token is missing",401)
         try:
-            data = jwt.decode(token,KEY)
+            data = jwt.decode(token,KEY,algorithm="HS256")
             query = """
             SELECT user_id,email FROM users
             WHERE users.email = '{}'""".format(data['email'])
