@@ -67,8 +67,8 @@ class User:
         """Getting all users in database"""
         get_all_user ="""
         SELECT user_id,firstname,email from users"""
-        returned = db.handle_select_queries(get_all_user)
-        return User.format_users_to_list(returned)
+        #returned = db.handle_select_queries(get_all_user)
+        return User.format_users_to_list(db.handle_select_queries(get_all_user))
 
     def update_password(email, new_password):
         """This will update the password for the user

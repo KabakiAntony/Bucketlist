@@ -1,5 +1,10 @@
 from flask import jsonify,request,make_response,abort
+from functools import wraps
+from app.api.models.db import handle_select_queries
+import jwt
 import re
+import os
+KEY = os.getenv('SECRET_KEY',"aX5bqx7djw3Hm1pAz2N8DQOzX3s")
 
 def override_make_response(key,message,status):
     """This method overrides make_response making custom responses from
@@ -54,6 +59,28 @@ def check_for_details_whitespace(data, items_to_check):
         if key in items_to_check and not value.strip():
             abort(override_make_response
             ("Error","{} field cannot be left blank".format(key),400))
-
     return True
+
+def token_required(f):
+    """
+        This function checks to ensure that a token is supplied
+        when accessing certain routes.
+    """
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = None
+        if 'x-access-token' in request.headers:
+            token = request.headers['x-access-token']
+        if not token:
+            return override_make_response("Error","Token is missing",401)
+        try:
+            data = jwt.decode(token,KEY)
+            query = """
+            SELECT user_id,email FROM users
+            WHERE users.email = '{}'""".format(data['email'])
+            user = handle_select_queries(query)
+        except:
+            return override_make_response("Error","Token is expired or invalid",401)
+        return f(user, *args, **kwargs)
+    return decorated
 

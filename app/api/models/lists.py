@@ -30,33 +30,36 @@ class Lists:
         return list_data
 
 
-    def get_all_post_items():
+    def get_all_post_items(user_id):
         """Getting all list items"""
         get_all_posts = """
-        SELECT post_id, content,user_id from posts """
+        SELECT post_id, content,user_id from posts
+        WHERE posts.user_id ='{}'""".format(user_id)
         return Lists.format_lists(db.handle_select_queries(get_all_posts))
 
-    def get_a_single_post(post_id):
+    def get_a_single_post(user_id,post_id):
         """Getting all list items"""
         get_a_single_post_item = """
         SELECT post_id, content, user_id from posts
-        WHERE posts.post_id ={}""".format(post_id)
+        WHERE posts.post_id ={} AND posts.user_id={}""".format(post_id,user_id)
         return Lists.format_lists(db.handle_select_queries(get_a_single_post_item))
 
-    def update_a_post(post_id,update_content):
+    def update_a_post(user_id,post_id,update_content):
         """Updating a list item"""
         updating_post_item = """
         UPDATE posts SET  content ='{}' WHERE posts.post_id ={}
-        """.format(update_content,post_id)
-        if Lists.get_a_single_post(post_id):
+        AND posts.user_id={}
+        """.format(update_content,post_id,user_id)
+        if Lists.get_a_single_post(user_id,post_id):
             db.handle_other_queries(updating_post_item)
-            return Lists.get_a_single_post(post_id)    
+            return Lists.get_a_single_post(user_id,post_id)    
     
-    def delete_a_post(post_id):
+    def delete_a_post(user_id,post_id):
         """Updating a list item"""
         deleting_a_post_item = """
         DELETE FROM posts  WHERE posts.post_id ={}
-        """.format(post_id)
-        if Lists.get_a_single_post(post_id):
+        AND posts.user_id={}
+        """.format(post_id,user_id)
+        if Lists.get_a_single_post(user_id,post_id):
             db.handle_other_queries(deleting_a_post_item)
             return "Post id {} deleted successfully.".format(post_id)
