@@ -39,13 +39,13 @@ class User:
         get all users and returns a list
         """
         users_list = []
-        for user in iterable:
+        for user_item in iterable:
             user_dict ={
-                "user_id":user[0],
-                "firstname":user[1],
-                "email":user[2]
+                "user_id":user_item[0],
+                "firstname":user_item[1],
+                "email":user_item[2]
             }
-        users_list.append(user_dict)
+            users_list.append(user_dict)
         return users_list
 
     def get_user_by_email(email):
@@ -65,10 +65,10 @@ class User:
     
     def get_all_users():
         """Getting all users in database"""
-        get_all_user ="""
+        get_users ="""
         SELECT user_id,firstname,email from users"""
         #returned = db.handle_select_queries(get_all_user)
-        return User.format_users_to_list(db.handle_select_queries(get_all_user))
+        return User.format_users_to_list(db.handle_select_queries(get_users))
 
     def update_password(email, new_password):
         """This will update the password for the user

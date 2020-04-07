@@ -45,7 +45,7 @@ def get_a_single_list(user,post_id):
 @bucket_list.route("/lists/<int:post_id>/content",methods=['PATCH'])
 @token_required
 def update_a_post(user,post_id):
-    """This updates a list information"""
+    """This updates a list information...."""
     try:
         user_id = user[0][0]
     except:

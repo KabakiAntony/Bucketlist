@@ -29,7 +29,6 @@ class Lists:
             list_data.append(list_format)
         return list_data
 
-
     def get_all_post_items(user_id):
         """Getting all list items"""
         get_all_posts = """

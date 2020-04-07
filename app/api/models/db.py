@@ -87,7 +87,6 @@ def handle_other_queries(query,isquery=False):
     try:
         if isquery:
             get_last_insert = kursor.fetchone()[0]
-            konnection.close()
             return get_last_insert
         konnection.close()
     except psycopg2.Error as error:
@@ -100,8 +99,8 @@ def handle_select_queries(query):
     konnection, kursor = db_connection(query)
     try:
         if konnection:
-            rows = kursor.fetchall()
-            konnection.close()
-        return rows
+            rows = kursor.fetchall()    
+            return rows
+        konnection.close()
     except psycopg2.Error as error:
         print("We got an error of ->: {} @method handle_select_queries.".format(error))

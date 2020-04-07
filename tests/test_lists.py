@@ -34,7 +34,7 @@ class TestLists(unittest.TestCase):
             {"email": "kabak.kiarie@gmail.com"}, KEY, algorithm='HS256')
         if not data:
             data = self.test_list
-        response = self.client.post('/bucket/lists'
+        response = self.client.post('/lists'
         ,data=json.dumps(self.test_list),
         headers={'x-access-token': user_token},
         content_type='application/json')
@@ -51,7 +51,7 @@ class TestLists(unittest.TestCase):
         user_token = jwt.encode(
             {"email":"kabak.kiarie@gmail.com"},KEY,
             algorithm='HS256')
-        response = self.client.get('/bucket/lists',
+        response = self.client.get('/lists',
         headers={'x-access-token': user_token})
         self.assertEqual(response.status_code,200)
 
@@ -61,7 +61,7 @@ class TestLists(unittest.TestCase):
         user_token = jwt.encode(
             {"email":"kabak.kiarie@gmail.com"},KEY,
             algorithm='HS256')
-        response = self.client.get('/bucket/lists/{}'.format(2),
+        response = self.client.get('/lists/{}'.format(2),
         headers={'x-access-token': user_token})
         self.assertEqual(response.status_code,200)
 
@@ -71,7 +71,7 @@ class TestLists(unittest.TestCase):
         user_token = jwt.encode(
             {"email":"kabak.kiarie@gmail.com"},KEY,
             algorithm='HS256')
-        response = self.client.patch('bucket/lists/{}/content'.format(2),
+        response = self.client.patch('/lists/{}/content'.format(2),
             data=json.dumps(self.updated_list),
             headers={'x-access-token': user_token},
             content_type='application/json')
@@ -82,7 +82,7 @@ class TestLists(unittest.TestCase):
         user_token = jwt.encode(
             {"email": "kabak.kiarie@gmail.com"},KEY,
             algorithm='HS256')
-        response = self.client.delete('bucket/lists/{}'.format(1),
+        response = self.client.delete('/lists/{}'.format(1),
             data=json.dumps(self.updated_list),
             headers={'x-access-token': user_token},
             content_type='application/json')

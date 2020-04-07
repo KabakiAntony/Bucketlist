@@ -1,6 +1,3 @@
-# this will return and format calls to the user database 
-# make it better for view  to user
-
 import os
 import jwt
 from flask import request,abort
@@ -88,7 +85,6 @@ def user_login():
 @bucket_list.route("/users",methods=['GET'])
 def get_all_users():
     """List all system users"""
-    #return override_make_response("Data",User.get_all_users(),200)
     return check_return(User.get_all_users())
 
 
