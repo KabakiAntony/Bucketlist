@@ -18,7 +18,7 @@ body {
   }
 img {
     max-width: 100%;
-    height: auto;
+    /*height: auto;*/
   }
   .header {
     background-color:#313131d3;
@@ -140,6 +140,11 @@ footer a{
     .flex-container {
         flex-direction: column;
       }
+    .card{
+        margin-left: auto;
+        margin-right: auto;
+
+    }
     h1{
         /*font-size:0.8rem;*/
         font-size:100%;
