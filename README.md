@@ -1,9 +1,8 @@
-# BucketList App
-This  branch is meant for deployment to the git hub pages so that we can view what the website looks 
-like when hosted online.
-***FOR YOU TO BE ABLE TO SEE THE WEBSITE JUST ADD UI TO THE URL ABOVE AND YOU BE ON YOUR WAY ***
-
-## Setup and installation
+You are seeing this file because it is the readme for this gh-pages deployment to
+resolve this just 
+```
+     Add ***UI*** to the url above so as to be able to view the website.
+```
 
 Incase of a bug or anything else use any on the below channels to reach me on
 
