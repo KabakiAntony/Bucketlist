@@ -16,9 +16,11 @@ body {
     background-color: #fff;
 
   }
+.container {
+    width: 100%;
+}
 img {
     max-width: 100%;
-    /*height: auto;*/
   }
   .header {
     background-color:#313131d3;
@@ -86,6 +88,7 @@ img {
   }
   .flex-container p{
       margin:0.8rem;
+      flex:1 0 auto;
   }
   .card{
       background-color: rgba(2, 3, 8, 0.644);
@@ -133,10 +136,7 @@ footer a{
     font-size:0.8rem;
 }
   /* Mobile phones (portrait and landscape) ---------- */
-@media screen and (max-width: 767px){
-    .container {
-        width: 100%;
-    }
+@media screen and (max-width: 650px){
     .flex-container {
         flex-direction: column;
       }
@@ -146,7 +146,6 @@ footer a{
 
     }
     h1{
-        /*font-size:0.8rem;*/
         font-size:100%;
     }
     p{
@@ -167,22 +166,28 @@ footer a{
     
 }
 /* Tablets and iPads (portrait and landscape) ---------- */
-@media screen and (min-width: 768px) and (max-width: 1023px){
-    .container {
-        width: 100%;
+@media screen and (min-width: 650px) and (max-width: 800px){
+    h1{
+        font-size:100%;
     }
-    .flex-container {
-        flex-direction: column;
+    p{
+        font-size:90% ;
+    }
+    .bottom
+    {
+        font-size:100%;
+
+    }
+    .header a{
+        font-size:0.7rem;
+    }
+    .header a.logo {
+        font-size: 1.1rem;
+        padding-top:0.1rem;
       }
 }
-/* Low resolution desktops and laptops ----------*/ 
-@media screen and (min-width: 1024px) {
-    .container {
-        width: 100%;
-    }
-}
-/* High resolution desktops and laptops ----------*/
-@media screen and (min-width: 1280px) {
+/* Anything above 800px ----------*/
+@media screen and (min-width: 800px) {
     .container {
         width:100%;
         
