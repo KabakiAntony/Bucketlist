@@ -21,14 +21,14 @@ img {
     height: auto;
   }
   .header {
-    background-color:black;
+    background-color:#313131d3;
     padding: 1rem;
     height:auto;
     position: fixed;
     top: 0;
     width: 100%;
   }
-  header a{
+  .header a{
       float:left;
       color:white;
       padding:0.35rem;
@@ -75,6 +75,7 @@ img {
     text-align: center;
     border-radius:0.8rem;
     padding:0;
+    margin-bottom: 4rem;
   }
   .section_wrapper h1{
       text-align: center;
@@ -100,13 +101,37 @@ img {
       width:inherit;
   }
   .bottom{
-    background-color: rgba(2, 3, 8, 0.644);
+    background-color: rgba(239, 239, 241, 0.644);
     font-size: 1.2rem;
     text-align: center;
     border-radius:0.9rem;
-    color: rgb(228, 60, 60);
+    color: rgb(9, 115, 165);
     padding:0.5rem;
   }
+  footer
+{
+
+  height:auto;
+  background-color:#313131d3;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+  margin-top:2rem;
+}
+footer p{
+  font-size:12px;
+  font-weight:normal;
+}
+footer a{
+    color:white;
+    padding:0.35rem;
+    text-align: center;
+    text-decoration: none;
+    font-size:0.8rem;
+}
   /* Mobile phones (portrait and landscape) ---------- */
 @media screen and (max-width: 767px){
     .container {
@@ -115,6 +140,26 @@ img {
     .flex-container {
         flex-direction: column;
       }
+    h1{
+        /*font-size:0.8rem;*/
+        font-size:100%;
+    }
+    p{
+        font-size:90% ;
+    }
+    .bottom
+    {
+        font-size:100%;
+
+    }
+    .header a{
+        font-size:0.7rem;
+    }
+    .header a.logo {
+        font-size: 1.1rem;
+        padding-top:0.1rem;
+      }
+    
 }
 /* Tablets and iPads (portrait and landscape) ---------- */
 @media screen and (min-width: 768px) and (max-width: 1023px){
