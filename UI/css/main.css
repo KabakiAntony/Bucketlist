@@ -161,7 +161,7 @@ footer a{
     }
     .header a.logo {
         font-size: 1.1rem;
-        padding-top:0.1rem;
+        margin-top:8px;
       }
     
 }
@@ -193,3 +193,69 @@ footer a{
         
     }
 }
+/* modal login*/
+.bg-modal{
+    width:100%;
+    height:100%;
+    background-color:#313131d3;
+    position: absolute;
+    top:0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    display:none;
+}
+.login-form{
+    width: 280px;
+    height:350px;
+    background-color: rgba(239, 239, 241);
+    border-radius:0.5rem;
+    text-align: center;
+    padding:1.0rem;
+    position: relative;
+
+}
+.login-button {
+	background-color: rgba(2, 3, 8, 0.644);
+	border: 2px solid white;
+	border-radius:0.5rem;
+	text-decoration: none;
+	padding: 7px 28px;
+	color: white;
+    margin-bottom: 10px;
+    display: inline-block;
+    width:60%;
+}
+.login-button:hover{
+    background-color: white;
+    color: rgba(2, 3, 8, 0.644);
+    border: 2px solid rgba(2, 3, 8, 0.644);
+}
+input{
+    padding: 7px 28px;
+    display: block;
+    margin:15px auto;
+    font-weight: bold;
+}
+
+.close{
+    position: absolute;
+    top:0;
+    right:14px;
+    font-size: 35px;
+    transform: rotate(45deg);
+    cursor:pointer;
+}
+.text-center{
+    text-align: center;
+    margin-top: inherit;
+    font-size: 12px;
+    margin-top:20px;
+}
+.text-center a{
+    text-decoration:none;
+    font-weight: 700;
+    color:rgb(15, 37, 238);
+    
+}
+/*bootstrap*/

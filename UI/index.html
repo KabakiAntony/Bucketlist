@@ -20,7 +20,8 @@
           <div class="header">
             <a class="logo">Bucket List</a>
             <div class="header-right">
-                <a href="#">Sign In</a>
+                <a href="#"></a>
+                <a href="#" id="sign-in" class="sign-in">Sign In</a>
                 <a href="#">Sign Up</a>
                 <a href="#">Contact</a>
             </div>
@@ -57,5 +58,20 @@
     <footer>
       <p>copyright &copy; <a href="https://twitter.com/kabakikiarie">Kabaki Antony</a></p>
     </footer>
+    <!-- Modal HTML-->
+    <div class="bg-modal">
+      <div class="login-form">
+        <div class="close">+</div>
+        <img src="images/login-avatar.png" alt="">
+        <form action="">
+          <input type="email" placeholder="e-mail" required="required">
+          <input type="password" placeholder="Password" required="required">
+          <a href="#" class="login-button">Sign In</a>
+          <div class="text-center"><a href="#">Forgot password ?</a></div>
+          <div class="text-center">Don't have an account? <a href="#">Sign up</a></div>
+        </form>
+      </div>
+    </div>
+    <script src="js/modal.js"></script>
   </body>
 </html>
