@@ -14,10 +14,13 @@ body {
     text-align: left;
     background: url(../images/indexbg.jpg)fixed no-repeat;
     background-color: #fff;
+    padding-bottom:2.5rem ;
 
   }
 .container {
     width: 100%;
+    min-height: 100%;
+    position: relative;
 }
 img {
     max-width: 100%;
@@ -64,11 +67,11 @@ img {
       margin-left: auto;
       margin-right: auto;
       border-radius:0.5rem;
+      padding-bottom: 1rem;
   }
   .section_wrapper p
   {
     margin-left:2rem;
-    padding-bottom:1rem;
     color: white;
   }
   .bottom{
@@ -76,8 +79,6 @@ img {
     font-size: 1.2rem;
     text-align: center;
     border-radius:0.8rem;
-    padding:0;
-    margin-bottom: 4rem;
   }
   .section_wrapper h1{
       text-align: center;
@@ -97,7 +98,6 @@ img {
       width:90%;
       height:100%;
       overflow: hidden;
-      /*margin:1.5rem;*/
       margin:2%;
   }
   .card img{
@@ -114,11 +114,9 @@ img {
   footer
 {
 
-  height:auto;
+  height:2.5rem;
   background-color:#313131d3;
-  position: fixed;
-  left: 0;
-  bottom: 0;
+  position: absolute;
   width: 100%;
   color: white;
   text-align: center;
@@ -258,4 +256,4 @@ input{
     color:rgb(15, 37, 238);
     
 }
-/*bootstrap*/
+
