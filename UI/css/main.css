@@ -64,6 +64,7 @@ img {
   .section_wrapper h1{
       text-align: center;
       color: rgb(64, 66, 60);
+      padding-top:20px;
   }
   .flex-container {
     display: flex;
@@ -85,6 +86,10 @@ img {
     text-align: center;
     color: rgb(9, 25, 165);
     padding:0.5rem;
+  }
+  .bold{
+      color:rgba(211, 44, 86, 0.986);
+      cursor:not-allowed;
   }
   footer
 {
