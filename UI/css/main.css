@@ -1,21 +1,13 @@
-html {
-    font-family: 'Montserrat', sans-serif;
-    line-height: 1.15;
-    -webkit-text-size-adjust: 100%;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    box-sizing: border-box;
-}
+html,
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
-    font-size: 100%;
+    font-size: 95%;
     font-weight: 400;
     color: #212529;
     text-align: left;
     background: url(../images/indexbg.jpg)fixed no-repeat;
     background-color: #fff;
-    padding-bottom:2.5rem ;
-
   }
 .container {
     width: 100%;
@@ -49,11 +41,6 @@ img {
   .header a:hover {
     text-decoration: underline;
   }
-  .header a.active {
-    background-color: dodgerblue;
-    color: white;
-    text-transform: lowercase;
-  }
   .header-right {
     float: right;
     padding-right:3rem;
@@ -67,18 +54,12 @@ img {
       margin-left: auto;
       margin-right: auto;
       border-radius:0.5rem;
-      padding-bottom: 1rem;
   }
   .section_wrapper p
   {
     margin-left:2rem;
     color: white;
-  }
-  .bottom{
-    background-color: rgba(2, 3, 8, 0.644);
-    font-size: 1.2rem;
-    text-align: center;
-    border-radius:0.8rem;
+    font-size:90%;
   }
   .section_wrapper h1{
       text-align: center;
@@ -89,25 +70,19 @@ img {
   }
   .flex-container p{
       margin:0.8rem;
-      flex:1 0 auto;
+      font-size:90%;
   }
   .card{
       background-color: rgba(2, 3, 8, 0.644);
       border-radius:0.5rem;
       text-align:center;
-      width:90%;
-      height:100%;
-      overflow: hidden;
+      width:100%;
       margin:2%;
-  }
-  .card img{
-      width:inherit;
   }
   .bottom{
     background-color: rgba(239, 239, 241, 0.644);
     font-size: 1.2rem;
     text-align: center;
-    border-radius:0.9rem;
     color: rgb(9, 115, 165);
     padding:0.5rem;
   }
@@ -116,22 +91,22 @@ img {
 
   height:2.5rem;
   background-color:#313131d3;
-  position: absolute;
   width: 100%;
   color: white;
   text-align: center;
   margin-top:2rem;
 }
 footer p{
+  padding-top:10px;
   font-size:12px;
   font-weight:normal;
 }
 footer a{
     color:white;
-    padding:0.35rem;
+    padding-top:10px;
+    font-size:12px;
     text-align: center;
     text-decoration: none;
-    font-size:0.8rem;
 }
   /* Mobile phones (portrait and landscape) ---------- */
 @media screen and (max-width: 650px){
@@ -256,4 +231,3 @@ input{
     color:rgb(15, 37, 238);
     
 }
-
