@@ -141,6 +141,9 @@ footer a{
         font-size: 1.1rem;
         margin-top:8px;
       }
+      .header-right {
+        padding-right:3rem;
+      }
     
 }
 /* Tablets and iPads (portrait and landscape) ---------- */
