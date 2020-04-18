@@ -19,3 +19,4 @@ document.querySelector('.closeb').addEventListener('click',
 function(){
     document.querySelector('.bg-register-modal').style.display = "none";
 });
+

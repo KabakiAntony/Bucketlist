@@ -9,8 +9,11 @@
     <meta name="description" content="This is a webpage where you can create and manage your bucketlist">
     <meta name="Keywords" content="Bucket List, Create list, to do">
     <meta name="author" content="kabaki.antony@gmail.com">
+    <link rel="icon" href="images/favicon.ico" type="image/gif" sizes="16x16">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <script defer src="./js/modal.js"></script>
+    <script defer src="./js/validate.js"></script>
     <title>BucketList</title>
   </head>
   <body>
@@ -63,10 +66,10 @@
       <div class="login-form">
         <div class="close">+</div>
         <img src="images/login-avatar.png" alt="">
-        <form action="">
-          <input type="email" placeholder="e-mail" required="required">
-          <input type="password" placeholder="Password" required="required">
-          <a href="#" class="login-button">Sign In</a>
+        <form id="inForm">
+          <input type="email" id="inEmail" name="email" placeholder="e-mail" required>
+          <input type="password" id="inPassword" name="password" placeholder="Password" required>
+          <button type="submit" class="login-button">Sign In</button>
           <div class="text-center"><a href="#">Forgot password ?</a></div>
           <div class="text-center">Don't have an account? <a href="#">Sign up</a></div>
         </form>
@@ -77,14 +80,15 @@
       <div class="login-form signup">
         <div class="closeb">+</div>
         <div class="text-big">Sign Up</div>
-        <form action="">
-          <input type="firstname" placeholder="firstname" required="required">
-          <input type="email" placeholder="e-mail" required="required">
-          <input type="password" placeholder="Password" required="required">
-          <a href="#" class="login-button">Sign Up</a>
+        <div class="text-center" id="error"></div>
+        <form id="upForm">
+          <input type="firstname" id="firstname" name="firstname" placeholder="firstname" required>
+          <input type="email" id="upEmail" name="email" placeholder="e-mail" required>
+          <input type="password" id="upPassword" name="password" placeholder="Password" required>
+          <button type="submit" class="login-button">Sign Up</button>
         </form>
       </div>
     </div>
-    <script src="js/modal.js"></script>
+    
   </body>
 </html>
