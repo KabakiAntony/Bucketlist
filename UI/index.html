@@ -77,12 +77,13 @@
     </div>
     <!--Modal Sign UP-->
     <div class="bg-register-modal">
+      <!-- <div id="snackbar">You have been signed up successfully.</div> -->
       <div class="login-form signup">
         <div class="closeb">+</div>
         <div class="text-big">Sign Up</div>
-        <div class="text-center" id="error"></div>
+        <div class="text-center" id="upError"></div>
         <form id="upForm">
-          <input type="firstname" id="firstname" name="firstname" placeholder="firstname">
+          <input type="firstname" id="firstname" name="firstname" placeholder="firstname" required>
           <input type="email" id="upEmail" name="email" placeholder="e-mail">
           <input type="password" id="upPassword" name="password" placeholder="Password">
           <button type="submit" class="login-button">Sign Up</button>
