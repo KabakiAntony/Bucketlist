@@ -39,6 +39,7 @@ function(){
 /* validation on submit during signup goes here */
 
 signUpForm.addEventListener('submit',(e)=>{
+    e.preventDefault();
 
     if(upFirstName.value === '' || upFirstName.value == null){
         feedback.push('Enter a name');
