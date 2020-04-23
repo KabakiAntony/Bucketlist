@@ -89,10 +89,13 @@ fetch('https://kabucketlist.herokuapp.com/auth/signup',{
     That is a success or why it is not.
     */ 
     if(response.ok) {
+        document.querySelector('.bg-register-modal').style.display = "none"; 
+        callSnackBar(); 
         return response.json();          
     }
     else
     {
+
         console.log("The server could not service our rekuest due to : ", response.statusText);
     }
 })
@@ -108,3 +111,10 @@ preventing a fetch most of the times it is a network error.
  */
 .catch(error => console.log('This error occured :',error));
 }
+
+/* snack bar to notify user incase of anything */
+function callSnackBar(){
+    let signUpSuccess = document.getElementById("snackbar");
+    signUpSuccess.className = "show";
+    setTimeout(function(){ signUpSuccess.className = signUpSuccess.className.replace("show", ""); }, 5000);
+  }
