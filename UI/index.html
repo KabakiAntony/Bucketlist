@@ -12,8 +12,7 @@
     <link rel="icon" href="images/favicon.ico" type="image/gif" sizes="16x16">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <script defer src="./js/modal.js"></script>
-    <script defer src="./js/validate.js"></script>
+    <script defer src="./js/main.js"></script>
     <title>BucketList</title>
   </head>
   <body>
@@ -66,9 +65,10 @@
       <div class="login-form">
         <div class="close">+</div>
         <img src="images/login-avatar.png" alt="">
+        <div class="text-center" id="error"></div>
         <form id="inForm">
-          <input type="email" id="inEmail" name="email" placeholder="e-mail" required>
-          <input type="password" id="inPassword" name="password" placeholder="Password" required>
+          <input type="email" id="inEmail" name="email" placeholder="e-mail">
+          <input type="password" id="inPassword" name="password" placeholder="Password">
           <button type="submit" class="login-button">Sign In</button>
           <div class="text-center"><a href="#">Forgot password ?</a></div>
           <div class="text-center">Don't have an account? <a href="#">Sign up</a></div>
@@ -82,9 +82,9 @@
         <div class="text-big">Sign Up</div>
         <div class="text-center" id="error"></div>
         <form id="upForm">
-          <input type="firstname" id="firstname" name="firstname" placeholder="firstname" required>
-          <input type="email" id="upEmail" name="email" placeholder="e-mail" required>
-          <input type="password" id="upPassword" name="password" placeholder="Password" required>
+          <input type="firstname" id="firstname" name="firstname" placeholder="firstname">
+          <input type="email" id="upEmail" name="email" placeholder="e-mail">
+          <input type="password" id="upPassword" name="password" placeholder="Password">
           <button type="submit" class="login-button">Sign Up</button>
         </form>
       </div>
