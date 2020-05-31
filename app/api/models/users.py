@@ -15,13 +15,14 @@ class User:
         self.firstname = firstname 
         self.email = email 
         self.password = self.encrypt_password(password)
+        
 
     def create_user(self):
         """Here we are creating a new system user by adding them into 
         the users table in the database."""
         add_user="""
-        INSERT INTO users(firstname,email,password) VALUES
-        ('{}','{}','{}') RETURNING user_id;""".format(self.firstname,self.email,self.password)
+        INSERT INTO users(firstname,email,password,isConfirmed) VALUES
+        ('{}','{}','{}','False') RETURNING user_id;""".format(self.firstname,self.email,self.password)
         return db.handle_other_queries(add_user,True)
     
     def encrypt_password(self,password):
@@ -43,7 +44,8 @@ class User:
             user_dict ={
                 "user_id":user_item[0],
                 "firstname":user_item[1],
-                "email":user_item[2]
+                "email":user_item[2],
+                "isConfirmed":user_item[3]
             }
             users_list.append(user_dict)
         return users_list
@@ -51,14 +53,14 @@ class User:
     def get_user_by_email(email):
         """Getting the user against their email address"""
         get_user_by_email= """
-        SELECT user_id,firstname,email,password from users 
+        SELECT user_id,firstname,email,password,isConfirmed from users 
         where users.email ='{}'""".format(email)
         return db.handle_select_queries(get_user_by_email)
 
     def get_user_by_id(user_id):
         """Getting the user against their user_id"""
         get_user_by_id= """
-        SELECT user_id,firstname,email from users
+        SELECT user_id,firstname,email,isConfirmed from users
         where users.user_id ='{}'""".format(user_id)
         returned = db.handle_select_queries(get_user_by_id)
         return User.format_users_to_list(returned)
@@ -66,7 +68,7 @@ class User:
     def get_all_users():
         """Getting all users in database"""
         get_users ="""
-        SELECT user_id,firstname,email from users"""
+        SELECT user_id,firstname,email,isConfirmed from users"""
         #returned = db.handle_select_queries(get_all_user)
         return User.format_users_to_list(db.handle_select_queries(get_users))
 

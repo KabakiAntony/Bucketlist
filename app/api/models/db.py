@@ -38,7 +38,8 @@ def create_tables():
         user_id SERIAL PRIMARY KEY,
         firstname varchar(25) NOT NULL,
         email VARCHAR (30) NOT NULL UNIQUE,
-        password VARCHAR (128) NOT NULL
+        password VARCHAR (128) NOT NULL,
+        isConfirmed VARCHAR(5) NOT NULL
     )"""
 
     create_posts_table ="""
@@ -47,6 +48,8 @@ def create_tables():
         post_id SERIAL PRIMARY KEY,
         content varchar(255) NOT NULL,
         user_id INTEGER,
+        isStarted varchar(5) NOT NULL,
+        isCompleted varchar(5) NOT NULL,
         FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
     )"""
     return [create_users_table,create_posts_table]
