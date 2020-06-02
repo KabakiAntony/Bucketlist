@@ -54,8 +54,7 @@ h1{
   width:90%;
   margin: 0 auto;
   border-radius:0.5rem;
-  height: auto;
-  
+  padding-bottom:50px;  
 }
 .flex-container{
   display: flex;
@@ -75,11 +74,9 @@ h1{
   margin-bottom:10px;
 }
 .bottom{
-  /* background-color: rgba(239, 239, 241, 0.924); */
-  font-size: 1.2rem;
+  font-size: 100%;
   text-align: center;
   color:  rgb(64, 66, 60);
-  padding:0.5rem;
 }
 .bold{
     color:rgba(211, 44, 86, 0.986);
@@ -176,6 +173,9 @@ img {max-width: 100%;}
   .card{
     margin:2%;
   }
+  #section-wrapper{
+    padding-bottom:10px;  
+  }
 }
 @media (min-width : 1200px) {
   .header {
@@ -203,6 +203,9 @@ img {max-width: 100%;}
   h1{
     color: rgb(64, 66, 60);
     font-size: 180%;
+  }
+  #section-wrapper{
+    padding-bottom:10px;  
   }
 }
 
