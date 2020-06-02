@@ -13,7 +13,7 @@ from app.api.utils import override_make_response,\
 # the reason I have setup a secret key backup is a work around
 # prevent flask from throwing an error of NONETYPE when parsing
 # KEY in jwt.encode 
-KEY = os.getenv('SECRET_KEY')
+KEY = os.getenv('SECRET_KEY','aX5bqx7djw3Hm1pAz2N8DQOzX3s')
 
 
 @bucket_list.route("/auth/signup",methods=['POST'])

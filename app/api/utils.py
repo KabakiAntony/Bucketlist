@@ -4,7 +4,7 @@ from functools import wraps
 from app.api.models.db import handle_select_queries
 import jwt
 import re
-KEY = os.getenv('SECRET_KEY')
+KEY = os.getenv('SECRET_KEY','aX5bqx7djw3Hm1pAz2N8DQOzX3s')
 
 def override_make_response(key,message,status):
     """This method overrides make_response making custom responses from
