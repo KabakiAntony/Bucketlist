@@ -47,6 +47,7 @@ h1{
   color: rgb(64, 66, 60);
   font-size: 100%;
   background-color: rgba(239, 239, 241, 0.924);
+  font-family: inherit;
 }
 
 #section-wrapper{
@@ -77,6 +78,7 @@ h1{
   font-size: 100%;
   text-align: center;
   color:  rgb(64, 66, 60);
+  font-family: inherit;
 }
 .bold{
     color:rgba(211, 44, 86, 0.986);
