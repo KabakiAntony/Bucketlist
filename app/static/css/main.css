@@ -46,10 +46,10 @@ h1{
   text-align: center;
   color: rgb(64, 66, 60);
   font-size: 100%;
+  background-color: rgba(239, 239, 241, 0.924);
 }
 
 #section-wrapper{
-  padding:10px;
   background-color:rgba(55, 73, 151, 0.308);
   width:90%;
   margin: 0 auto;
