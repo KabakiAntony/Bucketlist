@@ -56,7 +56,7 @@ h1{
   width:90%;
   margin: 0 auto;
   border-radius:0.5rem;
-  padding-bottom:50px;  
+  /* padding-bottom:50px;   */
 }
 .flex-container{
   display: flex;
@@ -81,6 +81,9 @@ h1{
   text-align: center;
   color:  rgb(64, 66, 60);
   font-family: inherit;
+  width:70%;
+  margin:0 auto;
+  padding-bottom:80px;
 }
 .bold{
     color:rgba(211, 44, 86, 0.986);
@@ -150,6 +153,10 @@ img {max-width: 100%;}
     font-size:0.8rem;
     margin-top:0.4rem;
   }
+  .bottom{
+    width:100%;
+    padding-bottom:0px;
+  }
 }
 @media (min-width : 992px) {
   .header {
@@ -181,6 +188,10 @@ img {max-width: 100%;}
   #section-wrapper{
     padding-bottom:10px;  
   }
+  .bottom{
+    width:100%;
+    padding-bottom:0px;
+  }
 }
 @media (min-width : 1200px) {
   .header {
@@ -211,5 +222,9 @@ img {max-width: 100%;}
   }
   #section-wrapper{
     padding-bottom:10px;  
+  }
+  .bottom{
+    width:100%;
+    padding-bottom:0px;
   }
 }
