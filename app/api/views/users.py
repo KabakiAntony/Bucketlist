@@ -1,6 +1,6 @@
 import os
 import jwt
-from flask import request,abort
+from flask import request,abort,render_template
 from app.api import bucket_list
 from app.api.models.users import User
 import psycopg2
@@ -121,6 +121,22 @@ def update_password():
 
     return override_make_response("Data",
     "Password changed successfully, Login with new password",200)
+
+
+@bucket_list.route('/u/signup')
+def user_signin():
+    """Return the user sign up  page"""
+    return render_template('signup.html')
+
+@bucket_list.route('/contact')
+def contact():
+    """Return the contact us page"""
+    return render_template('contact.html')
+
+@bucket_list.route('/u/reset')
+def password_reset():
+    """Return password reset html"""
+    return render_template('reset.html')
 
 
 # @bucket_list.route("/auth/confirm/<token>",methods=['POST'])
