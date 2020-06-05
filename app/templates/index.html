@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/gif" sizes="48x48">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <!-- <script defer src="{{ url_for('static', filename='js/main.js')}}"></script> -->
+    <script defer src="{{ url_for('static', filename='js/main.js')}}"></script>
     <title>BucketList</title>
 </head>
 <body>
@@ -60,6 +60,21 @@
         <footer>
             <p>&copy; 2020&nbsp;&nbsp;<a href="https://twitter.com/kabakikiarie">Find me here</a></p>
         </footer>
+         <!--Modal Sign In-->
+    <div class="bg-sigin-modal">
+      <div class="login-form">
+        <div class="close">+</div>
+        <img src="{{ url_for('static', filename='images/login-avatar.png') }}" alt="">
+        <div class="text-center" id="error"></div>
+        <form id="inForm">
+          <input type="email" id="inEmail" name="email" placeholder="e-mail">
+          <input type="password" id="inPassword" name="password" placeholder="Password">
+          <button type="submit" class="login-button">Sign In</button>
+          <div class="text-center"><a href="/u/reset">Forgot password ?</a></div>
+          <div class="text-center">Don't have an account? <a href="/u/signup">Sign up</a></div>
+        </form>
+      </div>
+    </div>
     </div>
 </body>
 </html>

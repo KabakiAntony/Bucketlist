@@ -118,6 +118,73 @@ text-decoration: underline;
 }
 img {max-width: 100%;}
 
+/* modal login*/
+.bg-sigin-modal{
+    width:100%;
+    height:100%;
+    background-color:rgba(55, 73, 151, 0.602);
+    position: absolute;
+    top:0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    display:none; 
+}
+.login-form{
+    width: 280px;
+    height:350px;
+    border-radius:0.5rem;
+    text-align: center;
+    padding:1.0rem;
+    position: relative;
+    background-color: rgba(239, 239, 241, 0.924);
+
+}
+.signup{height:240px;}
+.text-big{font-weight: 700;}
+.login-button {
+	background-color: rgba(2, 3, 8, 0.644);
+	border: 2px solid white;
+	border-radius:0.5rem;
+	text-decoration: none;
+	padding: 7px 28px;
+	color: white;
+  margin-bottom: 10px;
+  display: inline-block;
+  width:90%;
+}
+.login-button:hover{
+    background-color: white;
+    color: rgba(2, 3, 8, 0.644);
+    border: 2px solid rgba(2, 3, 8, 0.644);
+}
+input{
+    padding: 7px 28px;
+    display: block;
+    margin:15px auto;
+    font-weight: bold;
+}
+
+.close,.closeb{
+    position: absolute;
+    top:0;
+    right:14px;
+    font-size: 35px;
+    transform: rotate(45deg);
+    cursor:pointer;
+}
+.text-center{
+    text-align: center;
+    margin-top: inherit;
+    font-size: 12px;
+    margin-top:20px;
+}
+.text-center a{
+    text-decoration:none;
+    font-weight: 700;
+    color:#0096D6;
+}
+
 @media (min-width: 576px) {
   .header {
     padding: 1rem;
