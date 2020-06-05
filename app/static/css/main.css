@@ -126,8 +126,8 @@ img {max-width: 100%;}
     position: absolute;
     top:0;
     display:flex;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
     display:none; 
 }
 .login-form{
@@ -138,6 +138,8 @@ img {max-width: 100%;}
     padding:1.0rem;
     position: relative;
     background-color: rgba(239, 239, 241, 0.924);
+    margin:auto;
+    margin-top: 150px;
 
 }
 .signup{height:240px;}
@@ -182,7 +184,7 @@ input{
 .text-center a{
     text-decoration:none;
     font-weight: 700;
-    color:#0096D6;
+    color:rgb(214, 0, 160);
 }
 
 @media (min-width: 576px) {
@@ -259,6 +261,10 @@ input{
     width:100%;
     padding-bottom:0px;
   }
+  .bg-sigin-modal{
+    justify-content: center;
+    align-items: center;
+}
 }
 @media (min-width : 1200px) {
   .header {
@@ -294,4 +300,8 @@ input{
     width:100%;
     padding-bottom:0px;
   }
+  .bg-sigin-modal{
+    justify-content: center;
+    align-items: center;
+}
 }
