@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/gif" sizes="48x48">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
     <script defer src="{{ url_for('static', filename='js/main.js')}}"></script>
     <title>BucketList</title>
 </head>
@@ -34,18 +33,18 @@
             <div class="flex-container">
                 <div id="form-container">
                     <h2 class="form-header">Sign up</h2>
-                    <form action="/" class="form" id="form">
+                    <form  class="form" id="upForm" method="POST">
                     <label >First name</label>
-                    <input  type="text" class="input" id="firstname" required>
-                     <div class="error" id="error-email"></div>
-                     <label >Email</label>
-                     <input type="email" class="input" id="email">
-                     <div class="error" id="error-password"></div>
+                    <input  type="text" class="input" name ="firstname" id="firstname" required>
+                    <div class="error" id="error-email"></div>
+                    <label >Email</label>
+                    <input type="email" class="input" id="upEmail" name="upEmail" >
+                    <div class="error" id="error-password"></div>
                     <label >Password</label>
-                    <input type="password" class="input" id="password" autocomplete="on">
+                    <input type="password" class="input" id="upPassword" name="upPassword" autocomplete="on">
                     <input type="submit" id="submit" value="Create my account">
+                    <div class="text-center">Already have an account? <a href="#" id="sign-up-form">Sign In</a></div>
                    </form>
-
                 </div>
                 <div id="side-text">
 

@@ -10,7 +10,6 @@ let inEmail = document.getElementById('inEmail');
 let inPassword = document.getElementById('inPassword');
 
 /* this part acts on the sign in modal */
-
 document.getElementById ('sign-in').addEventListener('click',
 function(){
     document.querySelector('.bg-sigin-modal').style.display = "flex";
@@ -19,43 +18,38 @@ document.querySelector('.close').addEventListener('click',
 function(){
     document.querySelector('.bg-sigin-modal').style.display = "none";
 });
-
-signUpForm.addEventListener('submit',(e)=>{
-    e.preventDefault();
-    validateData();
-    postSignUp();
+document.getElementById ('sign-up-form').addEventListener('click',
+function(){
+    document.querySelector('.bg-sigin-modal').style.display = "flex";
 });
 
-function validateData(){
-    /* validation on submit during signup goes here */
-    let errorDiv = document.getElementById('upError');
-    let emailRegex =/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/igm;
-    let feedback = [];
-    
+/* validate on user input */
 
-    if(upFirstName.value === '' || upFirstName.value == null){
-        feedback.push('Enter a name');
-        document.getElementById("firstname").style.borderColor = "red";
+upEmail.addEventListener('input',(e)=>{
+    if(isEmail(upEmail.value)){
+        document.getElementById("error-email").innerHTML = ""; 
     }
-    if(!upEmail.value.match(emailRegex)||upEmail.value === ""){
-        feedback.push('Enter a valid email');
-        document.getElementById("upEmail").style.borderColor = "red";    
+    else{
+        document.getElementById("error-email").innerHTML = "Please enter a valid email address";
     }
-    if(upPassword.value.length < 6){
-        document.getElementById("upPassword").style.borderColor = "red";
-        feedback.push('Password too short!');
+});
+upPassword.addEventListener('input',(e)=>{
+    if(isValidPassword(upPassword.value))
+    {
+        document.getElementById("error-password").innerHTML = "";
+    }else{
+        document.getElementById("error-password").innerHTML = 
+        `Password should contain atleast 
+        1 uppercase character,
+        1 lowercase character,
+        1 number, 
+        1 special character,
+        atleast 6 characters
+        & not more than 20`;
     }
-    if(upPassword.value.length > 20){
-        document.getElementById("upPassword").style.borderColor = "red";
-        feedback.push('Password too long!');
-    }
-    if (feedback.length > 0){
-        errorDiv.innerText = feedback.join(' , ');
-    }
-}
+});
+/* sign up function */
 function postSignUp(){
-    /* when validations are ok  then go ahead and sign up user with entered data */
-
 const email = document.getElementById('upEmail').value;
 const password = document.getElementById('upPassword').value;
 const firstname = document.getElementById('firstname').value;
@@ -64,7 +58,7 @@ signUpData = {
     email,
     password
 };
-fetch('https://kabucketlist.herokuapp.com/auth/signup',{
+fetch('/auth/signup',{
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -72,13 +66,7 @@ fetch('https://kabucketlist.herokuapp.com/auth/signup',{
     body: JSON.stringify(signUpData)
   })
   .then(response => {
-    /* 
-    Here we get the response from the server
-    That is a success or why it is not.
-    */ 
     if(response.ok) {
-        document.querySelector('.bg-register-modal').style.display = "none"; 
-        callSnackBar(); 
         return response.json();          
     }
     else
@@ -88,9 +76,6 @@ fetch('https://kabucketlist.herokuapp.com/auth/signup',{
     }
 })
 .then(data => {
-    /*
-    This returns the data we posted to the server
-    */
     console.log(data);
 })
 /* 
@@ -100,9 +85,34 @@ preventing a fetch most of the times it is a network error.
 .catch(error => console.log('This error occured :',error));
 }
 
-/* snack bar to notify user incase of anything */
-function callSnackBar(){
-    let signUpSuccess = document.getElementById("snackbar");
-    signUpSuccess.className = "show";
-    setTimeout(function(){ signUpSuccess.className = signUpSuccess.className.replace("show", ""); }, 5000);
-  }
+function isEmail(my_email){
+    let emailRegex =/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/igm;
+    return my_email.match(emailRegex);
+}
+function isValidPassword(my_password){
+    let passwordRegex = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,20}$/igm;
+    return my_password.match(passwordRegex);
+}
+function validateData(){
+    if(!isEmail(upEmail.value)){
+        document.getElementById("error-email").innerHTML = "Please enter a valid email address";
+        return false;
+    }
+    if(!isValidPassword(upPassword.value)){
+        document.getElementById("error-password").innerHTML = 
+        `Password should contain atleast 
+        1 uppercase character,
+        1 lowercase character,
+        1 number, 
+        1 special character,
+        atleast 6 characters
+        & not more than 20.`;
+        return false;
+    }
+}
+/* sign up submission */
+signUpForm.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    validateData();
+    postSignUp();
+});
