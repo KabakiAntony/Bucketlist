@@ -53,10 +53,12 @@ h1{
 }
 
 #section-wrapper{
-  background-color:rgba(55, 73, 151, 0.308);
   width:90%;
   margin: 0 auto;
   border-radius:0.5rem;
+}
+.index-wrapper{
+  background-color:rgba(55, 73, 151, 0.308);
 }
 .flex-container{
   display: flex;
