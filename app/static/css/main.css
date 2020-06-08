@@ -68,7 +68,6 @@ h1{
   color: white;
 }
 .card{
-  /* background-color: rgba(2, 3, 8, 0.644); */
   background-color: #0096D6;
   border-radius:0.5rem;
   text-align:center;
@@ -192,27 +191,25 @@ font-size: 100%;
 }
 .login-form{
     width: 280px;
-    height:350px;
     border-radius:0.5rem;
     text-align: center;
-    padding:1.0rem;
+    padding:8px;
     position: relative;
     background-color: rgba(239, 239, 241, 0.924);
     margin:auto;
     margin-top: 100px;
-
 }
-.text-big{font-weight: 700;}
 .login-button {
 	background-color: #0096D6;
 	border: 2px solid white;
 	border-radius:0.5rem;
 	text-decoration: none;
-	padding: 7px 28px;
+	padding: 8px;
 	color: white;
   margin-bottom: 10px;
+  width:80%;
   display: inline-block;
-  width:90%;
+  font-weight:bold;
 }
 .login-button:hover{
     background-color: white;
@@ -220,7 +217,8 @@ font-size: 100%;
     border: 2px solid rgba(2, 3, 8, 0.644);
 }
 input{
-    padding: 7px 28px;
+    width:80%;
+    padding:8px;
     display: block;
     margin:15px auto;
     font-weight: bold;
@@ -285,7 +283,7 @@ input{
     width:100%;
     padding-bottom:0px;
   }
-  #form-container{
+  #form-container, .login-form{
     width: 320px;
   }
 }
@@ -327,7 +325,7 @@ input{
     justify-content: center;
     align-items: center;
 }
-#form-container{
+#form-container, .login-form{
   width: 320px;
 }
 }
@@ -369,7 +367,7 @@ input{
     justify-content: center;
     align-items: center;
 }
-#form-container{
+#form-container, .login-form{
   width: 320px;
 }
 }
