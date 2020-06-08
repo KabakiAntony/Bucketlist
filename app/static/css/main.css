@@ -131,6 +131,7 @@ img {max-width: 100%;}
   overflow: hidden;
   margin:0 auto;
   margin-bottom: 30px;
+  margin-top: 30px;
 }
 .form{
   padding:30px;
