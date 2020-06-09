@@ -51,26 +51,31 @@
                 </p>
               </div>
             </div>
-            <h2 class="bottom">All you need is to <span class="bold">sign in</span> or <span class="bold">sign up</span> above, 
+            <h2 class="bottom">All you need is to <a href="#" id="bottom-sign-in" class="bottom-links">sign in</a>
+               or <a href="/u/signup" id="bottom-sign-up" class="bottom-links">sign up</a> above, 
               make a list and act on it one item at a time.</h2>
         
 
         </div>
         <!--Modal Sign In-->
         <div class="bg-sigin-modal">
-          <div class="login-form">
-          <div class="close">+</div>
-        <img src="{{ url_for('static', filename='images/login-avatar.png') }}" alt="">
-        <div class="text-center" id="error"></div>
-        <form id="inForm">
-          <input type="email" id="inEmail" name="email" placeholder="e-mail">
-          <input type="password" id="inPassword" name="password" placeholder="Password">
-          <button type="submit" class="login-button">Sign In</button>
-          <div class="text-center"><a href="/u/reset">Forgot password ?</a></div>
-          <div class="text-center">Don't have an account? <a href="/u/signup">Sign up</a></div>
-        </form>
-      </div>
-    </div>
+          <div id="form-container" class="sign-in-form">
+            <div class="close">+</div>
+            <h2 class="form-header">Sign In</h2>
+            <div class="text-center"><img src="{{ url_for('static', filename='images/login-avatar.png') }}" alt=""></div>
+            <form  class="form" id="inForm" method="POST">
+            <div class="error" id="in-error-email"></div>
+            <label >Email</label>
+            <input type="email" class="input" id="inEmail" name="inEmail" >
+            <div class="error" id="in-error-password"></div>
+            <label >Password</label>
+            <input type="password" class="input" id="inPassword" name="inPassword" autocomplete="on">
+            <input type="submit" id="inSubmit" class="submit" value="Sign me in">
+            <div class="text-center"><a href="/u/reset">Forgot password ?</a></div>
+            <div class="text-center">Don't have an account? <a href="/u/signup">Sign up</a></div>
+           </form>
+          </div>  
+         </div>
         <footer>
             <p>&copy; 2020&nbsp;&nbsp;<a href="https://twitter.com/kabakikiarie">Find me here</a></p>
         </footer>
