@@ -4,26 +4,7 @@ let upFirstName = document.getElementById('firstname');
 let upEmail = document.getElementById('upEmail');
 let upPassword = document.getElementById('upPassword');
 
-/* values for sign-in */
-let signInForm = document.getElementById('inForm');
-let inEmail = document.getElementById('inEmail');
-let inPassword = document.getElementById('inPassword');
-
-/* this part acts on the sign in modal */
-document.getElementById ('sign-in').addEventListener('click',
-function(){
-    document.querySelector('.bg-sigin-modal').style.display = "flex";
-});
-document.querySelector('.close').addEventListener('click',
-function(){
-    document.querySelector('.bg-sigin-modal').style.display = "none";
-});
-document.getElementById ('bottom-sign-in').addEventListener('click',
-function(){
-    document.querySelector('.bg-sigin-modal').style.display = "flex";
-});
-
-/* validate on user input */
+/* signup validations */
 
 upEmail.addEventListener('input',(e)=>{
     if(isEmail(upEmail.value)){
@@ -48,6 +29,7 @@ upPassword.addEventListener('input',(e)=>{
         & not more than 20`;
     }
 });
+
 /* sign up function */
 function postSignUp(){
 const email = document.getElementById('upEmail').value;
@@ -85,6 +67,8 @@ preventing a fetch most of the times it is a network error.
 .catch(error => console.log('This error occured :',error));
 }
 
+
+/* validaition functions */
 function isEmail(my_email){
     let emailRegex =/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/igm;
     return my_email.match(emailRegex);
