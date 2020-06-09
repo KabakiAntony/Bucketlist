@@ -18,7 +18,7 @@ document.querySelector('.close').addEventListener('click',
 function(){
     document.querySelector('.bg-sigin-modal').style.display = "none";
 });
-document.getElementById ('sign-up-form').addEventListener('click',
+document.getElementById ('bottom-sign-in').addEventListener('click',
 function(){
     document.querySelector('.bg-sigin-modal').style.display = "flex";
 });
