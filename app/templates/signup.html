@@ -42,31 +42,31 @@
                     <div class="error" id="error-password"></div>
                     <label >Password</label>
                     <input type="password" class="input" id="upPassword" name="upPassword" autocomplete="on">
-                    <input type="submit" id="submit" value="Create my account">
-                    <div class="text-center">Already have an account? <a href="#" id="sign-up-form">Sign In</a></div>
+                    <input type="submit" id="submit" class="submit" value="Create my account">
+                    <div class="text-center">Already have an account? <a href="#" id="bottom-sign-in">Sign In</a></div>
                    </form>
-                </div>
-                <div id="side-text">
-
-                </div>
-            
+                  </div>            
         </div>
     </div>
         <!--sign in modal-->
         <div class="bg-sigin-modal">
-            <div class="login-form">
-              <div class="close">+</div>
-              <img src="{{ url_for('static', filename='images/login-avatar.png') }}" alt="">
-              <div class="text-center" id="error"></div>
-              <form id="inForm">
-                <input type="email" id="inEmail" name="email" placeholder="e-mail">
-                <input type="password" id="inPassword" name="password" placeholder="Password">
-                <button type="submit" class="login-button">Sign In</button>
-                <div class="text-center"><a href="/u/reset">Forgot password ?</a></div>
-                <div class="text-center">Don't have an account? <a href="/u/signup">Sign up</a></div>
-              </form>
-            </div>
-          </div>
+          <div id="form-container" class="sign-in-form">
+            <div class="close">+</div>
+            <h2 class="form-header">Sign In</h2>
+            <div class="text-center"><img src="{{ url_for('static', filename='images/login-avatar.png') }}" alt=""></div>
+            <form  class="form" id="inForm" method="POST">
+            <div class="error" id="in-error-email"></div>
+            <label >Email</label>
+            <input type="email" class="input" id="inEmail" name="inEmail" >
+            <div class="error" id="in-error-password"></div>
+            <label >Password</label>
+            <input type="password" class="input" id="inPassword" name="inPassword" autocomplete="on">
+            <input type="submit" id="inSubmit" class="submit" value="Sign me in">
+            <div class="text-center"><a href="/u/reset">Forgot password ?</a></div>
+            <div class="text-center">Don't have an account? <a href="/u/signup">Sign up</a></div>
+           </form>
+          </div>  
+        </div>
         <footer>
             <p>&copy; 2020&nbsp;&nbsp;<a href="https://twitter.com/kabakikiarie">Find me here</a></p>
         </footer>
