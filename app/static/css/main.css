@@ -184,8 +184,8 @@ width:100%;
 font-size: 100%;
 }
 #reset-img{
-  height:160px;
-  width:160px;
+  height:120px;
+  width:120px;
   display:block;
   margin:auto;
   
@@ -201,9 +201,9 @@ font-size: 100%;
     display:flex;
     display:none; 
 }
-.sign-in-form{
-  height:450px;
-}
+ .sign-in-form{
+  height:480px;
+} 
 .close,.closeb{
     position: absolute;
     top:0;
@@ -267,7 +267,7 @@ font-size: 100%;
     width:100%;
     padding-bottom:0px;
   }
-  #form-container, .login-form{
+  #form-container{
     width: 320px;
   }
 }
@@ -309,7 +309,7 @@ font-size: 100%;
     justify-content: center;
     align-items: center;
 }
-#form-container, .login-form{
+#form-container{
   width: 320px;
 }
 }
@@ -351,7 +351,7 @@ font-size: 100%;
     justify-content: center;
     align-items: center;
 }
-#form-container, .login-form{
+#form-container{
   width: 320px;
 }
 }
