@@ -22,7 +22,6 @@
               <div class="header">
                 <a href="/" class="logo">Bucket List</a>
                 <div class="header-right">
-                    <a href="#" id="sign-in" class="sign-in">Sign In</a>
                     <a href="/contact">Contact</a>
                 </div>
             </div>
@@ -44,25 +43,6 @@
             </div>
         </div>
     </div>
-        <!--sign in modal-->
-        <div class="bg-sigin-modal">
-            <div id="form-container" class="sign-in-form">
-                <div class="close">+</div>
-                <h2 class="form-header">Sign In</h2>
-                <div class="text-center"><img src="{{ url_for('static', filename='images/login-avatar.png') }}" alt="Avatar"></div>
-                <form  class="form" id="resetForm" method="POST">
-                <div class="error" id="in-error-email"></div>
-                <label >Email</label>
-                <input type="email" class="input" id="inEmail" name="inEmail" >
-                <div class="error" id="in-error-password"></div>
-                <label >Password</label>
-                <input type="password" class="input" id="inPassword" name="inPassword" autocomplete="on">
-                <input type="submit" id="inSubmit" class="submit" value="Sign me in">
-                <!-- <div class="text-center"><a href="/u/reset">Forgot password ?</a></div> -->
-                <div class="text-center">Don't have an account? <a href="/u/signup">Sign up</a></div>
-               </form>
-              </div>  
-         </div>
         <footer>
             <p>&copy; 2020&nbsp;&nbsp;<a href="https://twitter.com/kabakikiarie">Find me here</a></p>
         </footer>
