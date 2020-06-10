@@ -1,6 +1,6 @@
 import os
 import jwt
-from flask import request,abort,render_template
+from flask import request,abort,render_template,jsonify
 from app.api import bucket_list
 from app.api.models.users import User
 import psycopg2
@@ -52,7 +52,7 @@ def user_login():
         entered_password = data["password"]
     except KeyError:
         abort(override_make_response(
-            "Error","Keys should be email,password",400))
+            "error","Keys should be email,password",400))
 
     # check if any field is empty
     check_for_details_whitespace(data,["email","password"])
@@ -64,7 +64,7 @@ def user_login():
         user = User.get_user_by_email(email)
         if not user:
             abort(override_make_response(
-                "Error","User does not exist, Please check email.",404))
+                "error","User not found, please check email.",404))
 
         # format the returned user
         user_id = user[0][0]
@@ -72,15 +72,13 @@ def user_login():
         returned_password = user[0][3]
         password_check = User.compare_password(returned_password,entered_password)
         if not password_check:
-            abort(override_make_response("Error","The password is wrong, please try again",400))
+            abort(override_make_response("error","Password is incorrect, please try again",401))
 
         token = jwt.encode({"email" :email},KEY,algorithm="HS256")
-        return override_make_response("Data",
-        [{"message": "Logged in successfully",
-        "token": token.decode('utf-8'),
-        "user": {"user_id": user_id,"email": email}}],200)
+
+        return override_make_response("data",token.decode('utf-8'),200)
     except psycopg2.DatabaseError as _error:
-        abort(override_make_response("Error", "Server error",500))
+        abort(override_make_response("error", "Server error",500))
     
 @bucket_list.route("/users",methods=['GET'])
 def get_all_users():
@@ -123,6 +121,11 @@ def update_password():
     "Password changed successfully, Login with new password",200)
 
 
+# @bucket_list.route("/auth/confirm/<token>",methods=['POST'])
+# def confirm_email(token):
+#     """verifies signed up user email"""
+
+
 @bucket_list.route('/u/signup')
 def user_signin():
     """Return the user sign up  page"""
@@ -138,10 +141,6 @@ def password_reset():
     """Return password reset html"""
     return render_template('reset.html')
 
-
-# @bucket_list.route("/auth/confirm/<token>",methods=['POST'])
-# def confirm_email(token):
-#     """verifies signed up user email"""
 
         
 
