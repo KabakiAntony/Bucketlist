@@ -74,7 +74,7 @@ class TestLists(unittest.TestCase):
                 "email": "kabak.kiarie@gmail.com",
                 "password": "Baniut490t5"
             }),content_type="application/json")
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 401)
     
     def test_signup_already_existing_email(self):
         """Test signing up an already existing email"""
