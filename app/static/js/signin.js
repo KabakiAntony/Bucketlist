@@ -53,12 +53,12 @@ function isValidPassword(my_password){
     return my_password.match(passwordRegex);
 }
 function validateData(){
-    if(!isEmail(upEmail.value)){
-        document.getElementById("error-email").innerHTML = "Please enter a valid email address";
+    if(!isEmail(inEmail.value)){
+        document.getElementById("in-error-email").innerHTML = "Please enter a valid email address";
         return false;
     }
-    if(!isValidPassword(upPassword.value)){
-        document.getElementById("error-password").innerHTML = 
+    if(!isValidPassword(inPassword.value)){
+        document.getElementById("in-error-password").innerHTML = 
         `Password should contain atleast 
         1 uppercase character,
         1 lowercase character,
@@ -69,9 +69,48 @@ function validateData(){
         return false;
     }
 }
-/* sign up submission */
-// signInForm.addEventListener('submit',(e)=>{
-//     e.preventDefault();
-//     validateData();
-//     postSignIn();
-// });
+
+/* sign in submission */
+signInForm.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    validateData();
+    signinInfo = {
+        email:inEmail.value,
+        password:inPassword.value
+    }
+    postSignIn(signinInfo);
+});
+
+function postSignIn(signInData){
+    fetch(`/auth/signin`,{
+    method : 'POST',
+    headers :{
+        'Content-Type': 'application/json'
+    },
+    body:JSON.stringify(signInData)
+    
+})
+.then(response =>response.json())
+.then(({data,status,error}) => {
+    if (status === 200){
+        console.log(data);
+        //localStorage.setItem('user',data);
+        // callToast();
+    }
+    else if (status === 401)
+    {
+        document.getElementById('in-error-password').innerText = error;
+    }
+    else if(status === 404){
+        document.getElementById('in-error-email').innerText = error;
+    }
+    else if(status === 400){
+        document.getElementById('in-error-email').innerText = "An error occurred, please contact administrator!";
+    } 
+    else {
+        document.getElementById('in-error-email').innerText = error;
+    }   
+})
+.catch(err => console.log(err));
+}
+
