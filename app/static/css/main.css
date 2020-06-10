@@ -152,8 +152,8 @@ img {max-width: 100%;}
   color: rgba(255,255,255);
 }
 .error{
-  color: rgb(255, 0, 0);
-  font-size: 13px;
+  color: rgba(255, 0, 0, 0.719);
+  font-size: 11px;
   margin-bottom: 3px;
 
 }
