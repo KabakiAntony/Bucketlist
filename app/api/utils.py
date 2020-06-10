@@ -10,7 +10,7 @@ def override_make_response(key,message,status):
     """This method overrides make_response making custom responses from
     views it will be available for various versions of the api hence reducing
     the repetition throughout the code for easy readability"""
-    raw_dict = {"Status":status}
+    raw_dict = {"status":status}
     raw_dict[key] = message
     return make_response(jsonify(raw_dict),status)
 
@@ -83,4 +83,9 @@ def token_required(f):
             return override_make_response("Error","Token is expired or invalid",401)
         return f(user, *args, **kwargs)
     return decorated
+
+# def send_mail(email):
+#     """
+#     This sends email on successful sign up / reset password
+#     """
 
