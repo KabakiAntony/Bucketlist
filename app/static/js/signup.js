@@ -8,18 +8,18 @@ let upPassword = document.getElementById('upPassword');
 
 upEmail.addEventListener('input',(e)=>{
     if(isEmail(upEmail.value)){
-        document.getElementById("error-email").innerHTML = ""; 
+        document.getElementById("up-error-email").innerHTML = ""; 
     }
     else{
-        document.getElementById("error-email").innerHTML = "Please enter a valid email address";
+        document.getElementById("up-error-email").innerHTML = "Please enter a valid email address";
     }
 });
 upPassword.addEventListener('input',(e)=>{
     if(isValidPassword(upPassword.value))
     {
-        document.getElementById("error-password").innerHTML = "";
+        document.getElementById("up-error-password").innerHTML = "";
     }else{
-        document.getElementById("error-password").innerHTML = 
+        document.getElementById("up-error-password").innerHTML = 
         `Password should contain atleast 
         1 uppercase character,
         1 lowercase character,
@@ -47,24 +47,23 @@ fetch('/auth/signup',{
     },
     body: JSON.stringify(signUpData)
   })
-  .then(response => {
-    if(response.ok) {
-        return response.json();          
-    }
-    else
-    {
-
-        console.log("The server could not service our rekuest due to : ", response.statusText);
-    }
-})
-.then(data => {
-    console.log(data);
-})
-/* 
-An error here only occurs if there is something that is 
-preventing a fetch most of the times it is a network error.
- */
-.catch(error => console.log('This error occured :',error));
+  .then(response => response.json())
+  .then(({data,status,error})=>{
+      if(status === 201){
+          console.log(data);
+          document.getElementById('up-error-email').innerHTML = `Signed up successfully.`;
+          callToast(data[0].firstname,data[0].email);          
+      }
+      else if(status === 400){
+        console.log(error);
+        document.getElementById('up-error-email').innerHTML = `${error}`;
+      }
+      else if(status === 409){
+        console.log(error);
+        document.getElementById('up-error-email').innerHTML = `${error}`;
+      }
+  })
+  .catch(err => console.log(`This error occured :${err}`));
 }
 
 
@@ -79,11 +78,11 @@ function isValidPassword(my_password){
 }
 function validateData(){
     if(!isEmail(upEmail.value)){
-        document.getElementById("error-email").innerHTML = "Please enter a valid email address";
+        document.getElementById("up-error-email").innerHTML = "Please enter a valid email address";
         return false;
     }
     if(!isValidPassword(upPassword.value)){
-        document.getElementById("error-password").innerHTML = 
+        document.getElementById("up-error-password").innerHTML = 
         `Password should contain atleast 
         1 uppercase character,
         1 lowercase character,
@@ -93,6 +92,22 @@ function validateData(){
         & not more than 20.`;
         return false;
     }
+}
+function callToast(name,email) {
+    let snackbar = document.getElementById("signup-success");
+    snackbar.innerHTML = `
+    Congratulations &nbsp;<span>${name}</span>
+    </br>
+    Please check &nbsp;<span>${email}</span>&nbsp;for sign in instructions.
+    </br>
+    Redirecting you to the homepage....
+    </br>
+    Thank you.
+    `
+    snackbar.className = "show";
+    setTimeout(function(){ snackbar.className = snackbar.className.replace("show", "");
+    location.href ='/';
+    }, 12000);
 }
 /* sign up submission */
 signUpForm.addEventListener('submit',(e)=>{
