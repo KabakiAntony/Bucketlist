@@ -85,6 +85,7 @@ h1{
   width:90%;
   margin:0 auto;
   background-color: rgba(239, 239, 241, 0.924);
+  border-radius: 5px;
 }
 .bottom a{
   text-decoration:none;
@@ -228,6 +229,58 @@ font-size: 100%;
   text-align: left;
   margin-left:30px;
 }
+/* successful signup toast */
+#signup-success {
+  visibility: hidden;
+  /* visibility: visible; */
+  width:280px;
+  /* background-color: rgb(6, 70, 6); */
+  background-color: rgb(0, 150, 214);
+  color: #fff;
+  text-align: left;
+  border-radius: 5px;
+  padding: 15px;
+  position: fixed; 
+  z-index: 1;
+  left:5%;
+  bottom: 150px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+#signup-success.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s;
+  animation: fadein 0.5s;
+}
+span{
+  /* color:rgb(85, 69, 50); */
+  color:rgb(0, 0, 13);
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 150px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 150px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 150px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 150px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+
+
+/* media kueries start here */
 @media (min-width: 576px) {
   .header {
     padding: 1rem;
@@ -269,6 +322,10 @@ font-size: 100%;
   }
   #form-container{
     width: 320px;
+  }
+  #signup-success {
+    widows: 320px;
+    left:38.5%;
   }
 }
 @media (min-width : 992px) {
@@ -312,6 +369,10 @@ font-size: 100%;
 #form-container{
   width: 320px;
 }
+#signup-success {
+  width:320px;
+  left:38.5%;
+}
 }
 @media (min-width : 1200px) {
   .header {
@@ -353,5 +414,9 @@ font-size: 100%;
 }
 #form-container{
   width: 320px;
+}
+#signup-success {
+  width:320px;
+  left:38.25%;
 }
 }
