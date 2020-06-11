@@ -33,7 +33,7 @@ def check_return(returned):
 def is_email_valid(email):
     """This function checks whether an email is valid"""
     if not re.match(r"^[A-Za-z0-9\.\+_-]+@[A-Za-z0-9\._-]+\.[a-zA-Z]*$", email):
-        abort(override_make_response("Data","email is invalid",400))
+        abort(override_make_response("data","email is invalid",400))
     return True
 
 
@@ -44,21 +44,21 @@ def is_valid_password(password):
     if len(password) < 6 or len(password) > 20:
         abort(
             override_make_response
-            ("Error","Password should be atleast 6 characters & not exceed 20",400))
+            ("error","Password should be atleast 6 characters & not exceed 20",400))
 
     lowercase_reg = re.search("[a-z]", password)
     uppercase_reg = re.search("[A-Z]", password)
     number_reg = re.search("[0-9]", password)
     if not lowercase_reg or not uppercase_reg or not number_reg:
         abort(override_make_response
-        ("Error","Password should contain at least 1 number, 1 small letter & 1 Capital letter",400))
+        ("error","Password should contain at least 1 number, 1 small letter & 1 Capital letter",400))
 
 def check_for_details_whitespace(data, items_to_check):
     """Check whether any of the user details is blank"""
     for key, value in data.items():
         if key in items_to_check and not value.strip():
             abort(override_make_response
-            ("Error","{} field cannot be left blank".format(key),400))
+            ("error","{} field cannot be left blank".format(key),400))
     return True
 
 def token_required(f):
