@@ -25,7 +25,7 @@ def user_signup():
         email = data["email"]
         password = data["password"]
     except:
-        abort(override_make_response("Error",
+        abort(override_make_response("error",
         "Keys should be 'firstname','email','password'",400))
     
     # check if any field is empty
@@ -35,13 +35,13 @@ def user_signup():
     # is the email already in use or not
     if User.get_user_by_email(email):
         abort(override_make_response
-        ("Error","The email is already in use choose another one",409 ))
+        ("error","The email is already in use, choose another one",409 ))
     # check if password meets expectations
     is_valid_password(password)
     new_user = User(firstname = firstname,email = email,password = password)
     user_id = new_user.create_user()
     return override_make_response(
-        "Data",[{"firstname":firstname,"email":email,"user_id":user_id}],201)
+        "data",[{"firstname":firstname,"email":email}],201)
 
 @bucket_list.route("/auth/signin",methods=['POST'])
 def user_login():
@@ -78,7 +78,7 @@ def user_login():
 
         return override_make_response("data",token.decode('utf-8'),200)
     except psycopg2.DatabaseError as _error:
-        abort(override_make_response("error", "Server error",500))
+        abort(override_make_response("error", "Server error, contact admin.",500))
     
 @bucket_list.route("/users",methods=['GET'])
 def get_all_users():
