@@ -50,8 +50,6 @@ fetch('/auth/signup',{
   .then(response => response.json())
   .then(({data,status,error})=>{
       if(status === 201){
-          console.log(data);
-          document.getElementById('up-error-email').innerHTML = `Signed up successfully.`;
           callToast(data[0].firstname,data[0].email);          
       }
       else if(status === 400){
@@ -96,13 +94,10 @@ function validateData(){
 function callToast(name,email) {
     let snackbar = document.getElementById("signup-success");
     snackbar.innerHTML = `
-    Congratulations &nbsp;<span>${name}</span>
-    </br>
+    Congratulations &nbsp;<span>${name}</span>,&nbsp;&nbsp;
     Please check &nbsp;<span>${email}</span>&nbsp;for sign in instructions.
     </br>
-    Redirecting you to the homepage....
-    </br>
-    Thank you.
+    </br>We will now redirect you to the homepage....
     `
     snackbar.className = "show";
     setTimeout(function(){ snackbar.className = snackbar.className.replace("show", "");
@@ -114,4 +109,4 @@ signUpForm.addEventListener('submit',(e)=>{
     e.preventDefault();
     validateData();
     postSignUp();
-});
+}); 
