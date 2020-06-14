@@ -93,9 +93,7 @@ function postSignIn(signInData){
 .then(response =>response.json())
 .then(({data,status,error}) => {
     if (status === 200){
-        console.log(data);
-        //localStorage.setItem('user',data);
-        // callToast();
+        sessionStorage.setItem('user',data);
     }
     else if (status === 401)
     {
