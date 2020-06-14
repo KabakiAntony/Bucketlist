@@ -6,14 +6,10 @@ from app.api.models.users import User
 import psycopg2
 from app.api.utils import override_make_response,\
     check_return,is_email_valid,is_valid_password,\
-    check_for_details_whitespace
+    check_for_details_whitespace,send_mail
 
 
-
-# the reason I have setup a secret key backup is a work around
-# prevent flask from throwing an error of NONETYPE when parsing
-# KEY in jwt.encode 
-KEY = os.getenv('SECRET_KEY','aX5bqx7djw3Hm1pAz2N8DQOzX3s')
+KEY = os.getenv('SECRET_KEY')
 
 
 @bucket_list.route("/auth/signup",methods=['POST'])
@@ -40,8 +36,19 @@ def user_signup():
     is_valid_password(password)
     new_user = User(firstname = firstname,email = email,password = password)
     user_id = new_user.create_user()
-    return override_make_response(
-        "data",[{"firstname":firstname,"email":email}],201)
+    # send email on sign up
+    subject = "Welcome to Kabucketlist"
+    content = """
+    Hey {},
+    Welcome to kabucketlist, congratulations on signing up with us,
+    kindly click on this link to verify your email and proceed on to
+    signin to kabucketlist and enjoy our services.
+
+    Regards Antony
+    Kabucketlist.
+    """.format(firstname)
+    send_mail(email,subject,content)
+    return override_make_response("data",[{"firstname":firstname,"email":email}],201)
 
 @bucket_list.route("/auth/signin",methods=['POST'])
 def user_login():
