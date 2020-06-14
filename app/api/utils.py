@@ -1,10 +1,12 @@
 import os
+import sendgrid
+from sendgrid.helpers.mail import *
 from flask import jsonify,request,make_response,abort
 from functools import wraps
 from app.api.models.db import handle_select_queries
 import jwt
 import re
-KEY = os.getenv('SECRET_KEY','aX5bqx7djw3Hm1pAz2N8DQOzX3s')
+KEY = os.getenv('SECRET_KEY')
 
 def override_make_response(key,message,status):
     """This method overrides make_response making custom responses from
@@ -84,8 +86,19 @@ def token_required(f):
         return f(user, *args, **kwargs)
     return decorated
 
-# def send_mail(email):
-#     """
-#     This sends email on successful sign up / reset password
-#     """
-
+def send_mail(email,emailSubject,emailContent):
+    """
+    This sends email on successful sign up / reset password
+    """
+    try:
+        sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
+        from_email = Email("kabaki.kiarie@gmail.com")
+        to_email = To(email)
+        subject = emailSubject
+        html_content = Content("text/html", emailContent)
+        mail = Mail(from_email, to_email, subject, html_content)
+        response = sg.client.mail.send.post(request_body=mail.get())
+    except Exception as e:
+        print(e.message)
+        return override_make_response("error",e.message,400)
+    
