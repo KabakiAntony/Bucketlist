@@ -10,7 +10,7 @@ import os
 from app import create_app
 from app.api.models.db import db_init
 
-KEY = os.getenv('SECRET_KEY',"aX5bqx7djw3Hm1pAz2N8DQOzX3s")
+KEY = os.getenv('SECRET_KEY')
 
 class TestLists(unittest.TestCase):
     def setUp(self):
