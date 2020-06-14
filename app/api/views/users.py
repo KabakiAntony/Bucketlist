@@ -6,7 +6,8 @@ from app.api.models.users import User
 import psycopg2
 from app.api.utils import override_make_response,\
     check_return,is_email_valid,is_valid_password,\
-    check_for_details_whitespace,send_mail
+    check_for_details_whitespace
+    #,send_mail
 
 
 KEY = os.getenv('SECRET_KEY')
@@ -37,17 +38,17 @@ def user_signup():
     new_user = User(firstname = firstname,email = email,password = password)
     user_id = new_user.create_user()
     # send email on sign up
-    subject = "Welcome to Kabucketlist"
-    content = """
-    Hey {},
-    Welcome to kabucketlist, congratulations on signing up with us,
-    kindly click on this link to verify your email and proceed on to
-    signin to kabucketlist and enjoy our services.
+    # subject = "Welcome to Kabucketlist"
+    # content = """
+    # Hey {},\
+    # Welcome to kabucketlist, congratulations on signing up with us,\
+    # kindly click on this link to verify your email and proceed on to\
+    # signin to kabucketlist and enjoy our services.\
 
-    Regards Antony
-    Kabucketlist.
-    """.format(firstname)
-    send_mail(email,subject,content)
+    # Regards Antony\
+    # Kabucketlist.\
+    # """.format(firstname)
+    # send_mail(email,subject,content)
     return override_make_response("data",[{"firstname":firstname,"email":email}],201)
 
 @bucket_list.route("/auth/signin",methods=['POST'])
