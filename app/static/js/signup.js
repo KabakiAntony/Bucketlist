@@ -53,18 +53,16 @@ fetch('/auth/signup',{
           callToast(data[0].firstname,data[0].email);          
       }
       else if(status === 400){
-        console.log(error);
         document.getElementById('up-error-email').innerHTML = `${error}`;
       }
       else if(status === 409){
-        console.log(error);
         document.getElementById('up-error-email').innerHTML = `${error}`;
       }
   })
   .catch(err => console.log(`This error occured :${err}`));
 }
 
-
+ 
 /* validaition functions */
 function isEmail(my_email){
     let emailRegex =/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/igm;
@@ -102,7 +100,7 @@ function callToast(name,email) {
     snackbar.className = "show";
     setTimeout(function(){ snackbar.className = snackbar.className.replace("show", "");
     location.href ='/';
-    }, 12000);
+    }, 10000);
 }
 /* sign up submission */
 signUpForm.addEventListener('submit',(e)=>{
