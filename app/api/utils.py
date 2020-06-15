@@ -97,7 +97,7 @@ def send_mail(email,emailSubject,emailContent):
         subject = emailSubject
         html_content = Content("text/plain", emailContent)
         mail = Mail(from_email, to_email, subject, html_content)
-        response = sg.client.mail.send.post(request_body=mail.get())
+        #response = sg.client.mail.send.post(request_body=mail.get())
     except Exception as e:
         return override_make_response("error",e,400)
     
