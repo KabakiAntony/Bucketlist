@@ -6,8 +6,7 @@ from app.api.models.users import User
 import psycopg2
 from app.api.utils import override_make_response,\
     check_return,is_email_valid,is_valid_password,\
-    check_for_details_whitespace
-    #,send_mail
+    check_for_details_whitespace,send_mail
 
 
 KEY = os.getenv('SECRET_KEY')
@@ -37,18 +36,21 @@ def user_signup():
     is_valid_password(password)
     new_user = User(firstname = firstname,email = email,password = password)
     user_id = new_user.create_user()
-    # send email on sign up
-    # subject = "Welcome to Kabucketlist"
-    # content = """
-    # Hey {},\
-    # Welcome to kabucketlist, congratulations on signing up with us,\
-    # kindly click on this link to verify your email and proceed on to\
-    # signin to kabucketlist and enjoy our services.\
+    token = jwt.encode({"email" :email},KEY,algorithm="HS256")
+    #send email on sign up
+    subject = """Welcome to Kabucketlist"""
+    content = """
+    Hey {},
 
-    # Regards Antony\
-    # Kabucketlist.\
-    # """.format(firstname)
-    # send_mail(email,subject,content)
+    Welcome to kabucketlist, to activate your account
+    please verify your email by clicking on link below
+
+    https://kabucketlist.herokuapp.com/auth/verify?in={}
+
+    Regards Antony,
+    Kabucketlist. 
+    """.format(firstname,token.decode('utf-8'))
+    send_mail(email,subject,content)
     return override_make_response("data",[{"firstname":firstname,"email":email}],201)
 
 @bucket_list.route("/auth/signin",methods=['POST'])
@@ -129,8 +131,8 @@ def update_password():
     "Password changed successfully, Login with new password",200)
 
 
-# @bucket_list.route("/auth/confirm/<token>",methods=['POST'])
-# def confirm_email(token):
+# @bucket_list.route("/auth/verify/<token>",methods=['POST'])
+# def verify_email(token):
 #     """verifies signed up user email"""
 
 
