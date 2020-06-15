@@ -10,6 +10,7 @@ from app.api.utils import override_make_response,\
 
 
 KEY = os.getenv('SECRET_KEY')
+url = os.getenv('VERIFY_EMAIL_URL')
 
 
 @bucket_list.route("/auth/signup",methods=['POST'])
@@ -41,15 +42,17 @@ def user_signup():
     subject = """Welcome to Kabucketlist"""
     content = """
     Hey {},
-
-    Welcome to kabucketlist, to activate your account
-    please verify your email by clicking on link below
-
-    https://kabucketlist.herokuapp.com/auth/verify?in={}
-
-    Regards Antony,
+    <br/>
+    <br/>
+    Welcome to kabucketlist, to activate your account<br/>
+    please verify your email by clicking on
+    <a href="{}/?token={}">link</a>.
+    <br/>
+    <br/>
+    Regards Antony,<br/>
     Kabucketlist. 
-    """.format(firstname,token.decode('utf-8'))
+    """.format(firstname,url,token.decode('utf-8'))
+    print(url)
     send_mail(email,subject,content)
     return override_make_response("data",[{"firstname":firstname,"email":email}],201)
 
@@ -131,9 +134,11 @@ def update_password():
     "Password changed successfully, Login with new password",200)
 
 
-# @bucket_list.route("/auth/verify/<token>",methods=['POST'])
-# def verify_email(token):
-#     """verifies signed up user email"""
+@bucket_list.route("/auth/verify/<token>",methods=['POST'])
+def verify_email(token):
+    """verifies signed up user email"""
+    print(token)
+    return "hello"
 
 
 @bucket_list.route('/u/signup')

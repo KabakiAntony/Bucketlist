@@ -95,9 +95,10 @@ def send_mail(email,emailSubject,emailContent):
         from_email = Email("kabaki.antony@gmail.com","Kabucketlist")
         to_email = To(email)
         subject = emailSubject
-        html_content = Content("text/plain", emailContent)
+        html_content = Content("text/html", emailContent)
         mail = Mail(from_email, to_email, subject, html_content)
-        sg.client.mail.send.post(request_body=mail.get())
+        sg.send(mail)
+        #sg.client.mail.send.post(request_body=mail.get())
     except Exception as e:
         return override_make_response("error",e,400)
     
