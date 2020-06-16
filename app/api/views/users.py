@@ -52,7 +52,6 @@ def user_signup():
     Regards Antony,<br/>
     Kabucketlist. 
     """.format(firstname,url,token.decode('utf-8'))
-    print(url)
     send_mail(email,subject,content)
     return override_make_response("data",[{"firstname":firstname,"email":email}],201)
 
