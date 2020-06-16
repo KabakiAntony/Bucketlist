@@ -93,7 +93,8 @@ def send_mail(email,emailSubject,emailContent):
     This sends email on successful sign up / reset password
     """
     try:
-        sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
+        sg = sendgrid.SendGridAPIClient(api_key="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")
+        # sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
         from_email = Email("kabaki.antony@gmail.com","Kabucketlist")
         to_email = To(email)
         subject = emailSubject
