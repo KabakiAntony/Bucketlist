@@ -40,18 +40,18 @@ def user_signup():
     token = jwt.encode({"email" :email},KEY,algorithm="HS256")
     #send email on sign up
     subject = """Welcome to Kabucketlist"""
-    content = """
-    Hey {},
-    <br/>
-    <br/>
-    Welcome to kabucketlist, to activate your account<br/>
-    please verify your email by clicking on
-    <a href="{}/?token={}">link</a>.
-    <br/>
-    <br/>
-    Regards Antony,<br/>
-    Kabucketlist. 
-    """.format(firstname,url,token.decode('utf-8'))
+    content = """Test"""
+    # Hey {},
+    # <br/>
+    # <br/>
+    # Welcome to kabucketlist, to activate your account<br/>
+    # please verify your email by clicking on
+    # <a href="{}/?token={}">link</a>.
+    # <br/>
+    # <br/>
+    # Regards Antony,<br/>
+    # Kabucketlist. 
+    # """.format(firstname,url,token.decode('utf-8'))
     send_mail(email,subject,content)
     return override_make_response("data",[{"firstname":firstname,"email":email}],201)
 

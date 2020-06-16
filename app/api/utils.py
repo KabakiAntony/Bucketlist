@@ -100,11 +100,11 @@ def send_mail(email,emailSubject,emailContent):
         #sg.send(mail)
         response = sg.client.mail.send.post(request_body=mail.get())
 
-        if (response.status_code == 202):
-            return override_make_response("data","Success",response.status_code)
-        else:
-            return override_make_response("error","An error occured",response.status_code)
+        # if (response.status_code == 202):
+        #     return override_make_response("data","Success",response.status_code)
+        # else:
+        #     return override_make_response("error","An error occured",response.status_code)
         #return override_make_response("data",response.body,response.status_code)
     except Exception as e:
-        return override_make_response("error",e,400)
+        print(e)
     
