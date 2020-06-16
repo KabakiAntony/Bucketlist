@@ -71,8 +71,8 @@ def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         token = None
-        # if 'x-access-token' in request.headers:
-        #     token = request.headers['x-access-token']
+        if 'x-access-token' in request.headers:
+            token = request.headers['x-access-token']
         if request.args.get('in'):
             token = request.args.get('in') 
         if not token:
