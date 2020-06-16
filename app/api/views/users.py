@@ -37,23 +37,23 @@ def user_signup():
     is_valid_password(password)
     new_user = User(firstname = firstname,email = email,password = password)
     new_user.create_user()
-    #token = jwt.encode({"email" :email},KEY,algorithm="HS256")
-    #print(token)
+    token = jwt.encode({"email" :email},"aX5bqx7djw3Hm1pAz2N8DQOzX3s",algorithm="HS256")
+
     #send email on sign up
-    # subject = """Welcome to Kabucketlist"""
-    # content = """Test"""
-    # Hey {},
-    # <br/>
-    # <br/>
-    # Welcome to kabucketlist, to activate your account<br/>
-    # please verify your email by clicking on
-    # <a href="{}/?token={}">link</a>.
-    # <br/>
-    # <br/>
-    # Regards Antony,<br/>
-    # Kabucketlist. 
-    # """.format(firstname,url,token.decode('utf-8'))
-    #send_mail(email,subject,content)
+    subject = """Welcome to Kabucketlist"""
+    content = """
+    Hey {},
+    <br/>
+    <br/>
+    Welcome to kabucketlist, to activate your account<br/>
+    please verify your email by clicking on
+    <a href="{}/?token={}">link</a>.
+    <br/>
+    <br/>
+    Regards Antony,<br/>
+    Kabucketlist. 
+    """.format(firstname,url,token.decode('utf-8'))
+    send_mail(email,subject,content)
     return override_make_response("data",[{"firstname":firstname,"email":email}],201)
 
 @bucket_list.route("/auth/signin",methods=['POST'])
