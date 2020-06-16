@@ -12,10 +12,10 @@ class TestLists(unittest.TestCase):
         self.client = self.app.test_client() 
         db_init()
         self.test_user = {"firstname":"kabaki",\
-            "email":"kabak.kiarie@gmail.com","password":"Baniut490t4"}
+            "email":"kabaki.kiarie@gmail.com","password":"Baniut490t4"}
         self.test_blank_username = {"firstname":"",\
-            "email":"akabak.kiarie@gmail.com","password":"Baniut490t4"}
-        self.login_user = {"email":"kabak.kiarie@gmail.com",
+            "email":"najuake@gmail.com","password":"Baniut490t4"}
+        self.login_user = {"email":"kabaki.kiarie@gmail.com",
             "password":"Baniut490t4"}
 
     # there will be no teardown in this test module 
@@ -42,7 +42,7 @@ class TestLists(unittest.TestCase):
         self.post()
         response = self.client.post(
             "/auth/signin", data=json.dumps({
-                "email": "kabak.kiarie@gmail.com",
+                "email": "kabaki.kiarie@gmail.com",
                 "password": "Baniut490t4"
             }),content_type="application/json")
         self.assertEqual(response.status_code, 200)     
@@ -71,7 +71,7 @@ class TestLists(unittest.TestCase):
         self.post()
         response = self.client.post(
             "/auth/signin", data=json.dumps({
-                "email": "kabak.kiarie@gmail.com",
+                "email": "kabaki.kiarie@gmail.com",
                 "password": "Baniut490t5"
             }),content_type="application/json")
         self.assertEqual(response.status_code, 401)
@@ -143,7 +143,7 @@ class TestLists(unittest.TestCase):
         """Test updating an existing user password"""
         self.post()
         response = self.client.post('/auth/newpass',
-        data=json.dumps({"email":"kabak.kiarie@gmail.com",
+        data=json.dumps({"email":"kabaki.kiarie@gmail.com",
         "password":"Baniut490t6"}),content_type='application/json')
         self.assertEqual(response.status_code, 200)
     
@@ -159,7 +159,7 @@ class TestLists(unittest.TestCase):
         """Test updating a password with missing password"""
         self.post()
         response = self.client.post('/auth/newpass',
-        data=json.dumps({"email":"kabak.kiarie@gmail.com",
+        data=json.dumps({"email":"kabaki.kiarie@gmail.com",
         "password":""}),content_type='application/json')
         self.assertEqual(response.status_code, 400)
 
