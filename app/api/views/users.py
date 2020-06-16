@@ -39,7 +39,7 @@ def user_signup():
     new_user.create_user()
     token = jwt.encode({"email" :email},"aX5bqx7djw3Hm1pAz2N8DQOzX3s",algorithm="HS256")
 
-    #send email on sign up
+    # send email on sign up
     subject = """Welcome to Kabucketlist"""
     content = """
     Hey {},

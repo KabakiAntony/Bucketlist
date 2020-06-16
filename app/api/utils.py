@@ -99,8 +99,8 @@ def send_mail(email,emailSubject,emailContent):
         subject = emailSubject
         html_content = Content("text/html", emailContent)
         mail = Mail(from_email, to_email, subject, html_content)
-        #sg.send(mail)
-        response = sg.client.mail.send.post(request_body=mail.get())
+        sg.send(mail)
+        # response = sg.client.mail.send.post(request_body=mail.get())
 
         # if (response.status_code == 202):
         #     return override_make_response("data","Success",response.status_code)
