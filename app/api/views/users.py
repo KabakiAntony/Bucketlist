@@ -36,8 +36,9 @@ def user_signup():
     # check if password meets expectations
     is_valid_password(password)
     new_user = User(firstname = firstname,email = email,password = password)
-    user_id = new_user.create_user()
-    token = jwt.encode({"email" :email},KEY,algorithm="HS256")
+    new_user.create_user()
+    #token = jwt.encode({"email" :email},KEY,algorithm="HS256")
+    #print(token)
     #send email on sign up
     # subject = """Welcome to Kabucketlist"""
     # content = """Test"""
