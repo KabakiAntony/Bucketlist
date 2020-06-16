@@ -39,8 +39,8 @@ def user_signup():
     user_id = new_user.create_user()
     token = jwt.encode({"email" :email},KEY,algorithm="HS256")
     #send email on sign up
-    subject = """Welcome to Kabucketlist"""
-    content = """Test"""
+    # subject = """Welcome to Kabucketlist"""
+    # content = """Test"""
     # Hey {},
     # <br/>
     # <br/>
@@ -52,7 +52,7 @@ def user_signup():
     # Regards Antony,<br/>
     # Kabucketlist. 
     # """.format(firstname,url,token.decode('utf-8'))
-    send_mail(email,subject,content)
+    #send_mail(email,subject,content)
     return override_make_response("data",[{"firstname":firstname,"email":email}],201)
 
 @bucket_list.route("/auth/signin",methods=['POST'])
