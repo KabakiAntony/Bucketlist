@@ -31,7 +31,7 @@ class TestLists(unittest.TestCase):
         test cases that need to post data see
         comments for more explanation."""  
         user_token = jwt.encode(
-            {"email": "kabak.kiarie@gmail.com"}, KEY, algorithm='HS256')
+            {"email": "kabaki.kiarie@gmail.com"}, KEY, algorithm='HS256')
         if not data:
             data = self.test_list
         response = self.client.post('/lists'
@@ -49,7 +49,7 @@ class TestLists(unittest.TestCase):
         """Test getting all lists"""
         self.post()
         user_token = jwt.encode(
-            {"email":"kabak.kiarie@gmail.com"},KEY,
+            {"email":"kabaki.kiarie@gmail.com"},KEY,
             algorithm='HS256')
         response = self.client.get('/lists',
         headers={'x-access-token': user_token})
@@ -59,7 +59,7 @@ class TestLists(unittest.TestCase):
         """Test getting specific list"""
         self.post()
         user_token = jwt.encode(
-            {"email":"kabak.kiarie@gmail.com"},KEY,
+            {"email":"kabaki.kiarie@gmail.com"},KEY,
             algorithm='HS256')
         response = self.client.get('/lists/{}'.format(2),
         headers={'x-access-token': user_token})
@@ -69,7 +69,7 @@ class TestLists(unittest.TestCase):
         """Testing editing a specific list"""
         self.post()
         user_token = jwt.encode(
-            {"email":"kabak.kiarie@gmail.com"},KEY,
+            {"email":"kabaki.kiarie@gmail.com"},KEY,
             algorithm='HS256')
         response = self.client.patch('/lists/{}/content'.format(2),
             data=json.dumps(self.updated_list),
@@ -80,7 +80,7 @@ class TestLists(unittest.TestCase):
     def test_deleting_a_list(self):
         """Testing deleting a specific list"""
         user_token = jwt.encode(
-            {"email": "kabak.kiarie@gmail.com"},KEY,
+            {"email": "kabaki.kiarie@gmail.com"},KEY,
             algorithm='HS256')
         response = self.client.delete('/lists/{}'.format(1),
             data=json.dumps(self.updated_list),
