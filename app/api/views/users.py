@@ -87,9 +87,9 @@ def user_login():
         if not password_check:
             abort(override_make_response("error","Password is incorrect, please try again",401))
 
-        token = jwt.encode({"email" :email},os.getenv('SECRET_KEY'),algorithm="HS256")
-        token_decoded = token.decode('utf-8')
-        return override_make_response("data",token_decoded,200)
+        token = jwt.encode({"email" :email},"aX5bqx7djw3Hm1pAz2N8DQOzX3s",algorithm="HS256")
+         
+        return override_make_response("data",token.decode('utf-8'),200)
     except psycopg2.DatabaseError as _error:
         abort(override_make_response("error", "Server error, contact admin.",500))
     
