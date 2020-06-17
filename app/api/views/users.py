@@ -37,7 +37,7 @@ def user_signup():
     is_valid_password(password)
     new_user = User(firstname = firstname,email = email,password = password)
     new_user.create_user()
-    token = jwt.encode({"email" :email},"aX5bqx7djw3Hm1pAz2N8DQOzX3s",algorithm="HS256")
+    token = jwt.encode({"email" :email},KEY,algorithm="HS256")
 
     # send email on sign up
     subject = """Welcome to Kabucketlist"""
@@ -87,7 +87,7 @@ def user_login():
         if not password_check:
             abort(override_make_response("error","Password is incorrect, please try again",401))
 
-        token = jwt.encode({"email" :email},"aX5bqx7djw3Hm1pAz2N8DQOzX3s",algorithm="HS256")
+        token = jwt.encode({"email" :email},KEY,algorithm="HS256")
          
         return override_make_response("data",token.decode('utf-8'),200)
     except psycopg2.DatabaseError as _error:
