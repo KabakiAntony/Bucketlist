@@ -1,12 +1,16 @@
 import os
-import sendgrid
-from sendgrid.helpers.mail import *
 from flask import jsonify,request,make_response,abort
 from functools import wraps
 from app.api.models.db import handle_select_queries
 import jwt
 import re
+import smtplib
+from email.message import EmailMessage
+
+
 KEY = os.getenv('SECRET_KEY')
+PASSWORD = os.getenv('GMAIL_PASSWORD')
+EMAIL = os.getenv('GMAIL_USER')
 
 def override_make_response(key,message,status):
     """This method overrides make_response making custom responses from
@@ -88,25 +92,26 @@ def token_required(f):
         return f(user, *args, **kwargs)
     return decorated
 
-def send_mail(email,emailSubject,emailContent):
-    """
-    This sends email on successful sign up / reset password
-    """
-    try:
-        sg = sendgrid.SendGridAPIClient(api_key=os.getenv('SENDGRID_API_KEY'))
-        from_email = Email("kabaki.antony@gmail.com","Kabucketlist")
-        to_email = To(email)
-        subject = emailSubject
-        html_content = Content("text/html", emailContent)
-        mail = Mail(from_email, to_email, subject, html_content)
-        sg.send(mail)
-        # response = sg.client.mail.send.post(request_body=mail.get())
 
-        # if (response.status_code == 202):
-        #     return override_make_response("data","Success",response.status_code)
-        # else:
-        #     return override_make_response("error","An error occured",response.status_code)
-        #return override_make_response("data",response.body,response.status_code)
+def send_mail(user_email,subject,content):
+    """Send welcome and password reset email"""
+    try:
+        msg = EmailMessage()
+        msg['Subject'] = subject
+        msg['From'] = EMAIL
+        msg['To'] = user_email
+        msg.set_content("Welcome to the family.")
+        
+        msg.add_alternative(content,subtype='html')
+        
+        with smtplib.SMTP_SSL("smtp.gmail.com",465) as smtp:
+            smtp.login(EMAIL,PASSWORD)
+            
+            smtp.send_message(msg)
+
     except Exception as e:
         print(e)
+        
+
+
     

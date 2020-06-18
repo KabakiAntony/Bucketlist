@@ -134,11 +134,11 @@ def update_password():
     "Password changed successfully, Login with new password",200)
 
 
-@bucket_list.route("/auth/verify/<token>",methods=['POST'])
-def verify_email(token):
-    """verifies signed up user email"""
-    print(token)
-    return "hello"
+# @bucket_list.route("/auth/verify/<token>",methods=['POST'])
+# def verify_email(token):
+#     """verifies signed up user email"""
+#     print(token)
+#     return "hello"
 
 
 @bucket_list.route('/u/signup')
