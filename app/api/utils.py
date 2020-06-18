@@ -98,7 +98,8 @@ def send_mail(user_email,subject,content):
     try:
         msg = EmailMessage()
         msg['Subject'] = subject
-        msg['From'] = EMAIL
+        # msg['From'] = EMAIL
+        msg['From'] = "Bucketlist Team"
         msg['To'] = user_email
         msg.set_content("Welcome to the family.")
         
