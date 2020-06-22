@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!-- there are things that I want to do before I leave the earth -->
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="This is a webpage where you can create and manage your bucketlist">
+    <meta name="Keywords" content="Bucket List, Create list, to do">
+    <meta name="author" content="kabaki.antony@gmail.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/gif" sizes="48x48">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script defer src="{{ url_for('static', filename='js/verify.js')}}"></script>
+    <title>BucketList</title>
+</head>
+<body class="sign-up">
+    <div id="container">
+        <header>
+            <nav>
+              <div class="header">
+                <a href="/" class="logo">Bucket List</a>
+                <div class="header-right">
+                    <a href="/contact">Contact</a>
+                </div>
+            </div>
+            </nav>
+          </header>
+        <div id="section-wrapper">
+            <div class="flex-container">
+                 <div id="verified">
+                 </div>      
+            </div>
+        </div>
+    </div>
+        <footer>
+            <p>&copy; 2020&nbsp;&nbsp;<a href="https://twitter.com/kabakikiarie">Find me here</a></p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+/* this file does a fetch to verify the email */
+token = localStorage.getItem('user');
+fetch('/auth/verify'+token)
+.then(response=>response.json())
+.then(({data,status,error})=>{
+    if(status === 200){
+        document.getElementById('verified').innerHTML = data;
+    }
+    else{
+        console.log(error, status)
+    }
+})
+.catch((err)=>{
+    console.log(err)
+
+});
