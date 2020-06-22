@@ -1,6 +1,6 @@
 /* this file does a fetch to verify the email */
 token = localStorage.getItem('user');
-fetch(`https://kabucketlist.herokuapp.com/auth/verify`+token,{
+fetch(`https://kabucketlist.herokuapp.com/auth/verify?in=`+token,{
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
