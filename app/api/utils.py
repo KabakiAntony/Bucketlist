@@ -1,16 +1,14 @@
 import os
+import jwt
+import re
+import sendgrid
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 from flask import jsonify,request,make_response,abort
 from functools import wraps
 from app.api.models.db import handle_select_queries
-import jwt
-import re
-import smtplib
-from email.message import EmailMessage
-
 
 KEY = os.getenv('SECRET_KEY')
-PASSWORD = os.getenv('GMAIL_PASSWORD')
-EMAIL = os.getenv('GMAIL_USER')
 
 def override_make_response(key,message,status):
     """This method overrides make_response making custom responses from
@@ -92,27 +90,21 @@ def token_required(f):
         return f(user, *args, **kwargs)
     return decorated
 
-
-def send_mail(user_email,subject,content):
-    """Send welcome and password reset email"""
+def send_mail(user_email,the_subject,the_content):
+    """ Send email on signup and password reset """
+    message = Mail(
+    from_email='kabaki.antony@gmail.com',
+    to_emails= user_email,
+    subject= the_subject,
+    html_content=the_content)
     try:
-        msg = EmailMessage()
-        msg['Subject'] = subject
-        # msg['From'] = EMAIL
-        msg['From'] = "Bucketlist Team"
-        msg['To'] = user_email
-        msg.set_content("Welcome to the family.")
-        
-        msg.add_alternative(content,subtype='html')
-        
-        with smtplib.SMTP_SSL("smtp.gmail.com",465) as smtp:
-            smtp.login(EMAIL,PASSWORD)
-            
-            smtp.send_message(msg)
-
+        sg = SendGridAPIClient(os.environ.get('SENDGRID_KEY'))
+        response = sg.send(message)
+        # print(response.status_code)
+        # print(response.body)
+        # print(response.headers)
     except Exception as e:
         print(e)
-        
 
 
     
