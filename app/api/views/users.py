@@ -160,7 +160,7 @@ def password_reset():
     return render_template('reset.html')
 
 @bucket_list.route('/u/verify')
-def password_reset():
+def confirm_email():
     """Return verify email template"""
     return render_template('verify.html')
 
