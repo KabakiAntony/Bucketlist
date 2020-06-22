@@ -93,7 +93,7 @@ def token_required(f):
 def send_mail(user_email,the_subject,the_content):
     """ Send email on signup and password reset """
     message = Mail(
-    from_email='kabaki.antony@gmail.com',
+    from_email=('kabaki.antony@gmail.com','Kabucketlist Team'),
     to_emails= user_email,
     subject= the_subject,
     html_content=the_content)
