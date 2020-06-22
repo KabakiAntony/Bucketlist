@@ -50,6 +50,7 @@ fetch('/auth/signup',{
   .then(response => response.json())
   .then(({data,status,error})=>{
       if(status === 201){
+          localStorage.setItem('user',data[0].token)
           callToast(data[0].firstname,data[0].email);          
       }
       else if(status === 400){
