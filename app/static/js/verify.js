@@ -1,6 +1,11 @@
 /* this file does a fetch to verify the email */
 token = localStorage.getItem('user');
-fetch('/auth/verify'+token)
+fetch(`https://kabucketlist.herokuapp.com/auth/verify`+token,{
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
 .then(response=>response.json())
 .then(({data,status,error})=>{
     if(status === 200){
