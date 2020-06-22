@@ -54,7 +54,8 @@ def user_signup():
     Kabucketlist. 
     """.format(firstname,url,token.decode('utf-8'))
     send_mail(email,subject,content)
-    return override_make_response("data",[{"firstname":firstname,"email":email,"token":token.decode('utf-8')}],201)
+    return override_make_response(
+        "data",[{"firstname":firstname,"email":email,"token":token.decode('utf-8')}],201)
 
 @bucket_list.route("/auth/signin",methods=['POST'])
 def user_login():
