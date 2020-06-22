@@ -1,11 +1,11 @@
 # this file will deal with user management
-import os
-import jwt
-import sys
-import sendgrid
+# import os
+# import jwt
+# import sys
+# import sendgrid
 from . import db
-from flask import abort
-from sendgrid.helpers.mail import Email, Content, Mail
+# from flask import abort
+# from sendgrid.helpers.mail import Email, Content, Mail
 from werkzeug.security import generate_password_hash, check_password_hash
 
 class User:
@@ -79,6 +79,13 @@ class User:
         UPDATE users SET password = '{}' WHERE users.email = '{}'
         """.format(generate_password_hash(str(new_password)), email)
         db.handle_other_queries(update_user_password)
+
+    def verify_email(email):
+        """ this sets email verification status from false to true """
+        verify_user_email = f"""
+        UPDATE users SET isConfirmed = 'True' where users.email = '{email}'
+        """
+        db.handle_other_queries(verify_user_email)
     
 
     

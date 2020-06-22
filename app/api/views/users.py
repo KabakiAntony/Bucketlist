@@ -6,7 +6,7 @@ from app.api.models.users import User
 import psycopg2
 from app.api.utils import override_make_response,\
     check_return,is_email_valid,is_valid_password,\
-    check_for_details_whitespace,send_mail
+    check_for_details_whitespace,send_mail,token_required
 
 
 KEY = os.getenv('SECRET_KEY')
@@ -47,14 +47,14 @@ def user_signup():
     <br/>
     Welcome to kabucketlist, to activate your account<br/>
     please verify your email by clicking on
-    <a href="{}/?token={}">link</a>.
+    <a href="{}/?in={}">link</a>.
     <br/>
     <br/>
     Regards Antony,<br/>
     Kabucketlist. 
     """.format(firstname,url,token.decode('utf-8'))
     send_mail(email,subject,content)
-    return override_make_response("data",[{"firstname":firstname,"email":email}],201)
+    return override_make_response("data",[{"firstname":firstname,"email":email,"token":token.decode('utf-8')}],201)
 
 @bucket_list.route("/auth/signin",methods=['POST'])
 def user_login():
@@ -134,11 +134,14 @@ def update_password():
     "Password changed successfully, Login with new password",200)
 
 
-# @bucket_list.route("/auth/verify/<token>",methods=['POST'])
-# def verify_email(token):
-#     """verifies signed up user email"""
-#     print(token)
-#     return "hello"
+@bucket_list.route("/auth/verify",methods=['POST'])
+@token_required
+def verify_email(user):
+    """verifies signed up user email"""
+    email = user[0][1]
+    User.verify_email(email)
+    return override_make_response("Data",
+    f"The email address {email} has been verified successfully , please proceed to login.",200)
 
 
 @bucket_list.route('/u/signup')
@@ -155,6 +158,11 @@ def contact():
 def password_reset():
     """Return password reset html"""
     return render_template('reset.html')
+
+@bucket_list.route('/u/verify')
+def password_reset():
+    """Return verify email template"""
+    return render_template('verify.html')
 
 
         
