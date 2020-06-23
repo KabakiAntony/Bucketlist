@@ -97,7 +97,7 @@ function postSignIn(signInData){
     }
     else if (status === 401)
     {
-        document.getElementById('in-error-password').innerText = error;
+        document.getElementById('in-error-email').innerText = error;
     }
     else if(status === 404){
         document.getElementById('in-error-email').innerText = error;

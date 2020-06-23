@@ -10,7 +10,8 @@ from app.api.utils import override_make_response,\
 
 
 KEY = os.getenv('SECRET_KEY')
-url = os.getenv('VERIFY_EMAIL_URL')
+#url = os.getenv('VERIFY_EMAIL_URL')
+url = "http://127.0.0.1:5000/auth/verify"
 
 
 
@@ -88,6 +89,10 @@ def user_login():
         password_check = User.compare_password(returned_password,entered_password)
         if not password_check:
             abort(override_make_response("error","Password is incorrect, please try again",401))
+
+        # check if user has confirmed their email
+        if User.is_email_verified(email)[0][0] == 'False':
+            abort(override_make_response("error","please confirm your email to sign in",401))
 
         token = jwt.encode({"email" :email},KEY,algorithm="HS256")
          

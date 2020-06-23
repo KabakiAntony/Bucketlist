@@ -63,7 +63,6 @@ class User:
         """Getting all users in database"""
         get_users ="""
         SELECT user_id,firstname,email,isConfirmed from users"""
-        #returned = db.handle_select_queries(get_all_user)
         return User.format_users_to_list(db.handle_select_queries(get_users))
 
     def update_password(email, new_password):
@@ -80,6 +79,13 @@ class User:
         UPDATE users SET isConfirmed = 'True' where users.email = '{email}'
         """
         db.handle_other_queries(verify_user_email)
+
+    def is_email_verified(email):
+        """This  checks whether an email is confirmed before sign in"""
+        check_email_verification = f"""
+        SELECT isConfirmed from users where users.email = '{email}'
+        """
+        return db.handle_select_queries(check_email_verification)
     
 
     
