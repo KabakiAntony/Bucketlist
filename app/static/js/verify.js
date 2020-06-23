@@ -9,6 +9,7 @@ fetch(`https://kabucketlist.herokuapp.com/auth/verify?in=`+token,{
 .then(response=>response.json())
 .then(({data,status,error})=>{
     if(status === 200){
+        console.log(data);
         document.getElementById('verified').innerHTML = data;
     }
     else{
