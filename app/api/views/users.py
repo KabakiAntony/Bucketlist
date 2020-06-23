@@ -10,8 +10,7 @@ from app.api.utils import override_make_response,\
 
 
 KEY = os.getenv('SECRET_KEY')
-#url = os.getenv('VERIFY_EMAIL_URL')
-url = "http://127.0.0.1:5000/auth/verify"
+url = os.getenv('VERIFY_EMAIL_URL')
 
 
 
