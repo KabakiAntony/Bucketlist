@@ -13,6 +13,7 @@ KEY = os.getenv('SECRET_KEY')
 url = os.getenv('VERIFY_EMAIL_URL')
 
 
+
 @bucket_list.route("/auth/signup",methods=['POST'])
 def user_signup():
     """Signs a  new user up"""
@@ -53,7 +54,6 @@ def user_signup():
     Regards Antony,<br/>
     Kabucketlist. 
     """
-    # .format(firstname,url,token.decode('utf-8'))
     send_mail(email,subject,content)
     return override_make_response(
         "data",[{"firstname":firstname,"email":email,"token":token.decode('utf-8')}],201)
@@ -136,16 +136,14 @@ def update_password():
     "Password changed successfully, Login with new password",200)
 
 
-@bucket_list.route("/auth/verify",methods=['POST'])
+@bucket_list.route("/auth/verify",methods=['GET'])
 @token_required
 def verify_email(user):
     """verifies signed up user email"""
     email = user[0][1]
     User.verify_email(email)
-    return override_make_response("Data",
-    f"The email address {email} has been verified successfully , please proceed to login.",200)
-
-
+    return render_template('verify.html')
+    
 @bucket_list.route('/u/signup')
 def user_signin():
     """Return the user sign up  page"""
@@ -160,12 +158,6 @@ def contact():
 def password_reset():
     """Return password reset html"""
     return render_template('reset.html')
-
-@bucket_list.route('/u/verify')
-@token_required
-def confirm_email(user):
-    """Return verify email template"""
-    return render_template('verify.html')
 
 
         

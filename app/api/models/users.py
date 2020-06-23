@@ -1,11 +1,5 @@
 # this file will deal with user management
-# import os
-# import jwt
-# import sys
-# import sendgrid
 from . import db
-# from flask import abort
-# from sendgrid.helpers.mail import Email, Content, Mail
 from werkzeug.security import generate_password_hash, check_password_hash
 
 class User:

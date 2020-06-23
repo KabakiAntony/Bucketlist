@@ -255,6 +255,28 @@ span{
   color:rgb(47, 207, 47);
 }
 
+/* verification page styling */
+#verified{
+  width:90%;
+  margin:0 auto;
+  background-color: rgba(239, 239, 241, 0.924);
+  margin-top:50px;
+  text-align: center;
+  border-radius: 5px;
+  overflow: hidden;
+  
+}
+#verified p{
+  color:rgb(35, 36, 34);
+}
+#verified a{
+  text-decoration:none;
+  font-weight: 500;
+  color:rgb(214, 0, 160);
+  font-size: 100%;
+}
+
+
 @-webkit-keyframes fadein {
   from {top: 0; opacity: 0;} 
   to {top: 150px; opacity: 1;}

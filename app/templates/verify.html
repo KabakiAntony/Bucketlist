@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/gif" sizes="48x48">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <script defer src="{{ url_for('static', filename='js/verify.js')}}"></script>
+    <script defer src="{{ url_for('static', filename='js/signin.js')}}"></script>
     <title>BucketList</title>
 </head>
 <body class="sign-up">
@@ -30,10 +30,33 @@
         <div id="section-wrapper">
             <div class="flex-container">
                  <div id="verified">
-                 </div>      
+                     <h1 class="form-header">Email verification successful</h1>
+                     <div class="text-center"><img src="{{ url_for('static', filename='images/email-icon.png') }}" alt=""></div>
+                     <p>You have successfully verified your email address, sign in
+                         <a href="#" id="sign-in" class="sign-in"> here </a>and enjoy.</p>
+                 </div>     
             </div>
         </div>
     </div>
+       <!--Modal Sign In-->
+       <div class="bg-sigin-modal">
+        <div id="form-container" class="sign-in-form">
+          <div class="close">+</div>
+          <h2 class="form-header">Sign In</h2>
+          <div class="text-center"><img src="{{ url_for('static', filename='images/login-avatar.png') }}" alt=""></div>
+          <form  class="form" id="inForm" method="POST">
+          <div class="error" id="in-error-email"></div>
+          <label >Email</label>
+          <input type="email" class="input" id="inEmail" name="inEmail" >
+          <div class="error" id="in-error-password"></div>
+          <label >Password</label>
+          <input type="password" class="input" id="inPassword" name="inPassword" autocomplete="on">
+          <input type="submit" id="submit" class="submit" value="Sign me in">
+          <div class="text-center"><a href="/u/reset">Forgot password ?</a></div>
+          <div class="text-center">Don't have an account? <a href="/u/signup">Sign up</a></div>
+         </form>
+        </div>  
+       </div>
         <footer>
             <p>&copy; 2020&nbsp;&nbsp;<a href="https://twitter.com/kabakikiarie">Find me here</a></p>
         </footer>
