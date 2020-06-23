@@ -41,18 +41,19 @@ def user_signup():
 
     # send email on sign up
     subject = """Welcome to Kabucketlist"""
-    content = """
-    Hey {},
+    content = f"""
+    Hey {firstname},
     <br/>
     <br/>
     Welcome to kabucketlist, to activate your account<br/>
     please verify your email by clicking on
-    <a href="{}/?in={}">link</a>.
+    <a href="{url}?in={token.decode('utf-8')}">link</a>.
     <br/>
     <br/>
     Regards Antony,<br/>
     Kabucketlist. 
-    """.format(firstname,url,token.decode('utf-8'))
+    """
+    # .format(firstname,url,token.decode('utf-8'))
     send_mail(email,subject,content)
     return override_make_response(
         "data",[{"firstname":firstname,"email":email,"token":token.decode('utf-8')}],201)
