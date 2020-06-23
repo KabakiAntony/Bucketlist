@@ -1,8 +1,12 @@
 # all the tests for user model go here.
 import unittest
+import jwt
+import os
 import json
 from app import create_app
 from app.api.models.db import db_init
+
+KEY = os.getenv('SECRET_KEY')
 
 class TestLists(unittest.TestCase):
     def setUp(self):
@@ -39,7 +43,10 @@ class TestLists(unittest.TestCase):
     
     def test_successful_user_login(self):
         """Test login """
+        token = jwt.encode(
+            {"email": "kabaki.kiarie@gmail.com"}, KEY, algorithm='HS256')
         self.post()
+        self.client.get(f"/auth/verify?in={token.decode('utf-8')}")
         response = self.client.post(
             "/auth/signin", data=json.dumps({
                 "email": "kabaki.kiarie@gmail.com",
