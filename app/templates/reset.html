@@ -34,15 +34,16 @@
                     <img src="{{ url_for('static', filename='images/padlock.png') }}" alt="Reset Img" id="reset-img">
                     <div class="text-center" id="reset-text-center">Forgot password,enter your email</div>
                     <form  class="form" id="resetForm" method="POST">
-                    <div class="error" id="error-email"></div>
+                    <div class="error" id="reset-error-email"></div>
                     <label >Email</label>
-                    <input type="email" class="input" id="upEmail" name="upEmail" >
+                    <input type="email" class="input" id="resetEmail" name="resetEmail" >
                     <input type="submit" id="resetSubmit" class="submit" value="Send reset instructions">
                    </form>
                 </div>         
             </div>
         </div>
     </div>
+    <div id="signup-success"></div>
         <footer>
             <p>&copy; 2020&nbsp;&nbsp;<a href="https://twitter.com/kabakikiarie">Find me here</a></p>
         </footer>

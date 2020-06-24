@@ -1,68 +1,50 @@
 /* values for sign-up */
-let signUpForm = document.getElementById('resetForm');
-let upEmail = document.getElementById('upEmail');
+let resetForm = document.getElementById('resetForm');
+let resetEmail = document.getElementById('resetEmail');
 
 /* signup validations */
 
-upEmail.addEventListener('input',(e)=>{
-    if(isEmail(upEmail.value)){
-        document.getElementById("error-email").innerHTML = ""; 
+resetEmail.addEventListener('input',(e)=>{
+    if(isEmail(resetEmail.value)){
+        document.getElementById("reset-error-email").innerHTML = ""; 
     }
     else{
-        document.getElementById("error-email").innerHTML = "Please enter a valid email address";
+        document.getElementById("reset-error-email").innerHTML = "Please enter a valid email address";
     }
 });
 
 
 /* reset instructions function */
 function postReset(){
-const email = document.getElementById('upEmail').value;
+const email = document.getElementById('resetEmail').value;
 resetData = {
     email
 };
-fetch('/auth/signup',{
+fetch('/auth/send-reset',{
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(resetData)
   })
-  .then(response => {
-    if(response.ok) {
-        return response.json();          
+  .then(response => response.json())
+  .then(({data,status,error})=>{
+    if(status === 202){
+        callToast(data);             
     }
-    else
-    {
-
-        console.log("The server could not service our rekuest due to : ", response.statusText);
+    else if(status === 400){
+      document.getElementById('reset-error-email').innerHTML = `${error}`;
+    }
+    else if(status === 404){
+      document.getElementById('reset-error-email').innerHTML = `${error}`;
     }
 })
-.then(data => {
-    console.log(data);
-})
-/* 
-An error here only occurs if there is something that is 
-preventing a fetch most of the times it is a network error.
- */
-.catch(error => console.log('This error occured :',error));
+.catch(err => console.log(`This error occured :${err}`));
 }
-
-
-/* validaition functions */
-function isEmail(my_email){
-    let emailRegex =/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/igm;
-    return my_email.match(emailRegex);
-}
-function validateEmailData(){
-    if(!isEmail(upEmail.value)){
-        document.getElementById("error-email").innerHTML = "Please enter a valid email address";
-        return false;
-    }
-}
-/* sign up submission */
-signUpForm.addEventListener('submit',(e)=>{
+/* reset submission */
+resetForm.addEventListener('submit',(e)=>{
     e.preventDefault();
-    validateEmailData();
+    validateData();
     postReset();
 });
 
@@ -72,10 +54,22 @@ function isEmail(my_email){
     return my_email.match(emailRegex);
 }
 function validateData(){
-    if(!isEmail(upEmail.value)){
-        document.getElementById("error-email").innerHTML = "Please enter a valid email address";
+    if(!isEmail(resetEmail.value)){
+        document.getElementById("reset-error-email").innerHTML = "Please enter a valid email address";
         return false;
     }
+}
+function callToast(data) {
+    let snackbar = document.getElementById("signup-success");
+    snackbar.innerHTML = `
+    <span>${data}</span>&nbsp;
+    </br>
+    </br>We will now redirect you to the homepage....
+    `
+    snackbar.className = "show";
+    setTimeout(function(){ snackbar.className = snackbar.className.replace("show", "");
+    location.href ='/';
+    }, 10000);
 }
 
 
