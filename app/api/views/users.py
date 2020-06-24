@@ -11,6 +11,8 @@ from app.api.utils import override_make_response,\
 
 KEY = os.getenv('SECRET_KEY')
 url = os.getenv('VERIFY_EMAIL_URL')
+link = os.getenv('PASSWORD_RESET_URL')
+
 
 
 
@@ -47,7 +49,7 @@ def user_signup():
     <br/>
     <br/>
     Welcome to kabucketlist, to activate your account<br/>
-    please verify your email by clicking on
+    please verify your email by clicking on this
     <a href="{url}?in={token.decode('utf-8')}">link</a>.
     <br/>
     <br/>
@@ -110,17 +112,61 @@ def  get_specific_user(user_id):
     """Get a specific user"""
     return check_return(User.get_user_by_id(user_id))
 
+@bucket_list.route("/auth/send-reset",methods=['POST'])
+def send_reset():
+    """This sends the email instructions on how to reset password """
+    try:
+        data = request.get_json()
+        email = data['email']
+
+    except KeyError:
+        abort(override_make_response
+        ("error", "Key should be email",400))
+
+    # check if any field is empty
+    check_for_details_whitespace(data,["email"])
+    # then check if email is valid
+    is_email_valid(email)
+    # then check if user exists
+    user = User.get_user_by_email(email)
+    if not user:
+        abort(override_make_response
+        ("error", "No account associated with that email was found !",404))
+
+    token = jwt.encode({"email" :email},KEY,algorithm="HS256")
+    
+    # send email on sign up
+    subject = """Password reset instructions"""
+    content = f"""
+    Hey,
+    <br/>
+    <br/>
+    You have requested to reset your password<br/>
+    please  click on the following 
+    <a href="{link}?in={token.decode('utf-8')}">link</a><br/>
+    If you wish to continue with reset, ignore if you did<br/> 
+    not initialize the action.
+    <br/>
+    <br/>
+    Regards Antony,<br/>
+    Kabucketlist. 
+    """
+    send_mail(email,subject,content)
+
+    return override_make_response("data",
+    f"Password reset instructions sent to {email} successfully",202)
+
 @bucket_list.route("/auth/newpass",methods=['POST'])
 def update_password():
     """Update user password"""
-    try:
+    try: 
         data = request.get_json()
         email = data['email']
         password = data['password']
 
     except KeyError:
         abort(override_make_response
-        ("Error", "Should be email & password",400))
+        ("error", "Keys should be email & password",400))
     
     # check if any field is empty
     check_for_details_whitespace(data,["email","password"])
@@ -132,12 +178,31 @@ def update_password():
     user = User.get_user_by_email(email)
     if not user:
         abort(override_make_response
-        ("Not Found", "User is not registered.",404))
+        ("error", "No account associated with that email was found !",404))
     # if all is ok update user password.
     User.update_password(email,password)
 
-    return override_make_response("Data",
-    "Password changed successfully, Login with new password",200)
+    token = jwt.encode({"email" :email},KEY,algorithm="HS256")
+    
+    # send email on sign up
+    subject = """Password changed successfully."""
+    content = f"""
+    Hey,
+    <br/>
+    <br/>
+    Your password has been updated successfully.<br/>
+    If you did not initialize this action <br/>
+    please change your password
+    <a href="{link}?in={token.decode('utf-8')}">here</a> 
+    <br/>
+    <br/>
+    Regards Antony,<br/>
+    Kabucketlist. 
+    """
+    send_mail(email,subject,content)
+
+    return override_make_response("data",
+    "You have set a new password successfully.",200)
 
 
 @bucket_list.route("/auth/verify",methods=['GET'])
@@ -147,7 +212,13 @@ def verify_email(user):
     email = user[0][1]
     User.verify_email(email)
     return render_template('verify.html')
-    
+
+@bucket_list.route("/u/new-password")
+@token_required
+def load_reset_ui(user):
+    """Loads the ui for reset password"""
+    return render_template('new-password.html')
+
 @bucket_list.route('/u/signup')
 def user_signin():
     """Return the user sign up  page"""
