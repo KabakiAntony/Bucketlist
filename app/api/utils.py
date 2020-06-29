@@ -62,7 +62,7 @@ def check_for_details_whitespace(data, items_to_check):
     for key, value in data.items():
         if key in items_to_check and not value.strip():
             abort(override_make_response
-            ("error","{} field cannot be left blank".format(key),400))
+            ("error",f"{key} field cannot be left blank",400))
     return True
 
 def token_required(f):
@@ -99,7 +99,8 @@ def send_mail(user_email,the_subject,the_content):
     html_content=the_content)
     try:
         sg = SendGridAPIClient(os.environ.get('SENDGRID_KEY'))
-        response = sg.send(message)
+        sg.send(message)
+        # response = sg.send(message)
         # print(response.status_code)
         # print(response.body)
         # print(response.headers)
