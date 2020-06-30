@@ -25,13 +25,14 @@ def db_init():
             i += 1
         konnection.close()
     except Exception as error:
-        print("We got an error of ->:{} @method db_init".format(error))
+        print(f"We got an error of ->:{error} @method db_init")
 
 def create_tables():
     """
     Create the tables that will hold
     all the data for this simple app
     """
+    print('*** Creating tables ....')
     create_users_table ="""
     CREATE TABLE IF NOT EXISTS users
     (
@@ -80,7 +81,7 @@ def db_connection(query=None):
             konnection.commit()
 
     except (Exception,psycopg2.DatabaseError) as error:
-        print("We got an error of ->:{}  @method db_connection".format(error))
+        print(f"We got an error of ->:{error}  @method db_connection")
     return konnection, kursor
 
 
@@ -93,7 +94,7 @@ def handle_other_queries(query,isquery=False):
             return get_last_insert
         konnection.close()
     except psycopg2.Error as error:
-        print("We got an error of ->: {} @method handle_other_queries.".format(error))
+        print(f"We got an error of ->: {error} @method handle_other_queries.")
         sys.exit(1)
 
 def handle_select_queries(query):
@@ -106,4 +107,4 @@ def handle_select_queries(query):
             return rows
         konnection.close()
     except psycopg2.Error as error:
-        print("We got an error of ->: {} @method handle_select_queries.".format(error))
+        print(f"We got an error of ->: {error} @method handle_select_queries.")

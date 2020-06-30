@@ -1,85 +1,88 @@
 <!DOCTYPE html>
 <!-- there are things that I want to do before I leave the earth -->
 <html lang="en">
+
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="This is a webpage where you can create and manage your bucketlist">
-    <meta name="Keywords" content="Bucket List, Create list, to do">
-    <meta name="author" content="kabaki.antony@gmail.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/gif" sizes="48x48">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <script defer src="{{ url_for('static', filename='js/signin.js')}}"></script>
-    <title>BucketList</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="This is a webpage where you can create and manage your bucketlist">
+  <meta name="Keywords" content="Bucket List, Create list, to do">
+  <meta name="author" content="kabaki.antony@gmail.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/gif" sizes="48x48">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <script defer src="{{ url_for('static', filename='js/signin.js')}}"></script>
+  <title>BucketList</title>
 </head>
+
 <body>
-    <div id="container">
-        <header>
-            <nav>
-              <div class="header">
-                <a href="/" class="logo">Bucket List</a>
-                <div class="header-right">
-                  <a href="#" id="sign-in" class="sign-in">Sign In</a>
-                    <a href="/u/signup" id="sign-up" class="sign-up">Sign Up</a>
-                    <a href="/contact">Contact</a>
-                </div>
-            </div>
-            </nav>
-          </header>
-        <div id="section-wrapper" class="index-wrapper">
-            <h1>Welcome, make a list and realize your dreams</h1>
-            <div class="flex-container">
-              <div class="card">
-                <p><img src="{{ url_for('static', filename='images/graduateImage.jpg') }}" alt="Graduation Image"></p>
-                <p>Always wished that you could get that degree before a certain age, well worry
-                  no more manage your study goals with us and let us hold your hand.
-                </p>
-              </div>
-              <div class="card">
-                <p><img src="{{ url_for('static', filename='images/travelImage.jpg') }}" alt="Travel Image"></p>
-                <p>Remember that trip you have always had at the back of your mind well not any more
-                  add it to your bucket list with us and we will take the ride there with you.</p>
-                
-              </div>
-              <div class="card">
-                <p><img src="{{ url_for('static', filename='images/frenchImage.jpg') }}" alt="French Image"></p>
-                <p>Bonjour, tu parle francais? always wanted to learn a new language add it to 
-                  the list its easy as abcd just set a timeline add it your to do list and learn away.
-                </p>
-              </div>
-            </div>
-            <h2 class="bottom">All you need is to <a href="#" id="bottom-sign-in" class="bottom-links">sign in</a>
-               or <a href="/u/signup" id="bottom-sign-up" class="bottom-links">sign up</a> above, 
-              make a list and act on it one item at a time.</h2>
-        
+  <div id="container">
+    <header>
+      <nav>
+        <div class="header">
+          <a href="/" class="logo">Bucket List</a>
+          <div class="header-right">
+            <a href="#" id="sign-in" class="sign-in">Sign In</a>
+            <a href="/u/signup" id="sign-up" class="sign-up">Sign Up</a>
+            <a href="/contact">Contact</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div id="section-wrapper" class="index-wrapper">
+      <h1>Welcome, make a list and realize your dreams</h1>
+      <div class="flex-container">
+        <div class="card">
+          <p><img src="{{ url_for('static', filename='images/graduateImage.jpg') }}" alt="Graduation Image"></p>
+          <p>Always wished that you could get that degree before a certain age, well worry
+            no more manage your study goals with us and let us hold your hand.
+          </p>
+        </div>
+        <div class="card">
+          <p><img src="{{ url_for('static', filename='images/travelImage.jpg') }}" alt="Travel Image"></p>
+          <p>Remember that trip you have always had at the back of your mind well not any more
+            add it to your bucket list with us and we will take the ride there with you.</p>
 
         </div>
-        <!--Modal Sign In-->
-        <div class="bg-sigin-modal">
-          <div id="form-container" class="sign-in-form">
-            <div class="close">+</div>
-            <h2 class="form-header">Sign In</h2>
-            <div class="text-center"><img src="{{ url_for('static', filename='images/login-avatar.png') }}" alt=""></div>
-            <form  class="form" id="inForm" method="POST">
-            <div class="error" id="in-error-email"></div>
-            <label >Email</label>
-            <input type="email" class="input" id="inEmail" name="inEmail" >
-            <div class="error" id="in-error-password"></div>
-            <label >Password</label>
-            <input type="password" class="input" id="inPassword" name="inPassword" autocomplete="on">
-            <input type="submit" id="submit" class="submit" value="Sign me in">
-            <div class="text-center"><a href="/u/reset">Forgot password ?</a></div>
-            <div class="text-center">Don't have an account? <a href="/u/signup">Sign up</a></div>
-           </form>
-          </div>  
-         </div>
-        <footer>
-            <p>&copy; 2020&nbsp;&nbsp;<a href="https://twitter.com/kabakikiarie">Find me here</a></p>
-        </footer>
-        <div id="hack">.</div>
+        <div class="card">
+          <p><img src="{{ url_for('static', filename='images/frenchImage.jpg') }}" alt="French Image"></p>
+          <p>Bonjour, tu parle francais? always wanted to learn a new language add it to
+            the list its easy as abcd just set a timeline add it your to do list and learn away.
+          </p>
+        </div>
+      </div>
+      <h2 class="bottom">All you need is to <a href="#" id="bottom-sign-in" class="bottom-links">sign in</a>
+        or <a href="/u/signup" id="bottom-sign-up" class="bottom-links">sign up</a> above,
+        make a list and act on it one item at a time.</h2>
+
+
     </div>
+    <!--Modal Sign In-->
+    <div class="bg-sigin-modal">
+      <div id="form-container" class="sign-in-form">
+        <div class="close">+</div>
+        <h2 class="form-header">Sign In</h2>
+        <div class="text-center"><img src="{{ url_for('static', filename='images/login-avatar.png') }}" alt=""></div>
+        <form class="form" id="inForm" method="POST">
+          <div class="error" id="in-error-email"></div>
+          <label>Email</label>
+          <input type="email" class="input" id="inEmail" name="inEmail">
+          <div class="error" id="in-error-password"></div>
+          <label>Password</label>
+          <input type="password" class="input" id="inPassword" name="inPassword" autocomplete="on">
+          <input type="submit" id="submit" class="submit" value="Sign me in">
+          <div class="text-center"><a href="/u/reset">Forgot password ?</a></div>
+          <div class="text-center">Don't have an account? <a href="/u/signup">Sign up</a></div>
+        </form>
+      </div>
+    </div>
+    <footer>
+      <p>&copy; 2020&nbsp;&nbsp;<a href="https://twitter.com/kabakikiarie">Find me here</a></p>
+    </footer>
+    <div id="hack">.</div>
+  </div>
 </body>
+
 </html>
