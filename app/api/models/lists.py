@@ -17,7 +17,7 @@ class Lists:
         """
         return db.handle_other_queries(insert_new_post,True)
 
-    def format_lists(self,iterable):
+    def format_lists(iterable):
         """format the list to make it a dict"""
         list_data = []
         for list_item in iterable:
@@ -31,21 +31,21 @@ class Lists:
             list_data.append(list_format)
         return list_data
 
-    def get_all_post_items(self,user_id):
+    def get_all_post_items(user_id):
         """Getting all list items"""
         get_all_posts = f"""
         SELECT post_id, content,user_id,isStarted,isCompleted from posts
         WHERE posts.user_id ='{user_id}'"""
         return Lists.format_lists(db.handle_select_queries(get_all_posts))
 
-    def get_a_single_post(self,user_id,post_id):
+    def get_a_single_post(user_id,post_id):
         """Getting all list items"""
         get_a_single_post_item = f"""
         SELECT post_id, content, user_id,isStarted,isCompleted from posts
         WHERE posts.post_id ={post_id} AND posts.user_id={user_id}"""
         return Lists.format_lists(db.handle_select_queries(get_a_single_post_item))
 
-    def update_a_post(self,user_id,post_id,update_content):
+    def update_a_post(user_id,post_id,update_content):
         """Updating a list item"""
         updating_post_item = f"""
         UPDATE posts SET  content ='{update_content}' WHERE posts.post_id ={post_id}
@@ -55,9 +55,9 @@ class Lists:
             db.handle_other_queries(updating_post_item)
             return Lists.get_a_single_post(user_id,post_id)    
     
-    def delete_a_post(self,user_id,post_id):
+    def delete_a_post(user_id,post_id):
         """Updating a list item"""
-        deleting_a_post_item = """
+        deleting_a_post_item = f"""
         DELETE FROM posts  WHERE posts.post_id ={post_id}
         AND posts.user_id={user_id}
         """

@@ -61,7 +61,7 @@ class TestLists(unittest.TestCase):
         user_token = jwt.encode(
             {"email":"kabaki.kiarie@gmail.com"},KEY,
             algorithm='HS256')
-        response = self.client.get('/lists/{}'.format(2),
+        response = self.client.get(f'/lists/{2}',
         headers={'x-access-token': user_token})
         self.assertEqual(response.status_code,200)
 
@@ -71,7 +71,7 @@ class TestLists(unittest.TestCase):
         user_token = jwt.encode(
             {"email":"kabaki.kiarie@gmail.com"},KEY,
             algorithm='HS256')
-        response = self.client.patch('/lists/{}/content'.format(2),
+        response = self.client.patch(f'/lists/{2}/content',
             data=json.dumps(self.updated_list),
             headers={'x-access-token': user_token},
             content_type='application/json')
@@ -82,7 +82,7 @@ class TestLists(unittest.TestCase):
         user_token = jwt.encode(
             {"email": "kabaki.kiarie@gmail.com"},KEY,
             algorithm='HS256')
-        response = self.client.delete('/lists/{}'.format(1),
+        response = self.client.delete(f'/lists/{1}',
             data=json.dumps(self.updated_list),
             headers={'x-access-token': user_token},
             content_type='application/json')
