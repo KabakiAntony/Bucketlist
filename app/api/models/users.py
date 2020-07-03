@@ -14,9 +14,9 @@ class User:
     def create_user(self):
         """Here we are creating a new system user by adding them into 
         the users table in the database."""
-        add_user="""
+        add_user=f"""
         INSERT INTO users(firstname,email,password,isConfirmed) VALUES
-        ('{}','{}','{}','False') RETURNING user_id;""".format(self.firstname,self.email,self.password)
+        ('{self.firstname}','{self.email}','{self.password}','False') RETURNING user_id;"""
         return db.handle_other_queries(add_user,True)
     
     def encrypt_password(self,password):
@@ -46,16 +46,16 @@ class User:
 
     def get_user_by_email(email):
         """Getting the user against their email address"""
-        get_user_by_email= """
+        get_user_by_email= f"""
         SELECT user_id,firstname,email,password,isConfirmed from users 
-        where users.email ='{}'""".format(email)
+        where users.email ='{email}'"""
         return db.handle_select_queries(get_user_by_email)
 
     def get_user_by_id(user_id):
         """Getting the user against their user_id"""
-        get_user_by_id= """
+        get_user_by_id=f"""
         SELECT user_id,firstname,email,isConfirmed from users
-        where users.user_id ='{}'""".format(user_id)
+        where users.user_id ='{user_id}'"""
         returned = db.handle_select_queries(get_user_by_id)
         return User.format_users_to_list(returned)
     
@@ -68,9 +68,10 @@ class User:
     def update_password(email, new_password):
         """This will update the password for the user
         when one chooses to"""
-        update_user_password = """
-        UPDATE users SET password = '{}' WHERE users.email = '{}'
-        """.format(generate_password_hash(str(new_password)), email)
+        update_user_password = f"""
+        UPDATE users SET password = '{generate_password_hash(str(new_password))}'
+        WHERE users.email = '{email}'
+        """
         db.handle_other_queries(update_user_password)
 
     def verify_email(email):

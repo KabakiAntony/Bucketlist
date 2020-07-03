@@ -108,3 +108,7 @@ def handle_select_queries(query):
         konnection.close()
     except psycopg2.Error as error:
         print(f"We got an error of ->: {error} @method handle_select_queries.")
+
+
+if __name__ == '__main__':
+    db_init()

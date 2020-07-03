@@ -81,12 +81,12 @@ def token_required(f):
             return override_make_response("Error","Token is missing",401)
         try:
             data = jwt.decode(token,KEY,algorithm="HS256")
-            query = """
+            query = f"""
             SELECT user_id,email FROM users
-            WHERE users.email = '{}'""".format(data['email'])
+            WHERE users.email = '{data['email']}'"""
             user = handle_select_queries(query)
         except:
-            return override_make_response("Error","Token is expired or invalid",401)
+            return override_make_response("error","Token is expired or invalid",401)
         return f(user, *args, **kwargs)
     return decorated
 
